@@ -1,0 +1,37 @@
+{
+  "name": "theyorkshire-dot-dev",
+  "author": "Steven Cooney",
+  "title": "TheYorkshire.Dev",
+  "description": "TheYorkshireDev's Personal Website",
+  "homepage": "https://theyorkshire.dev",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheYorkshireDev/theyorkshire-dot-dev.git"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "rm -rf public && rm -rf .cache",
+    "start": "npm run develop"
+  },
+  "keywords": [
+    "TheYorkshireDev",
+    "Steven Cooney",
+    "GatsbyJS",
+    "personal",
+    "portfolio",
+    "website",
+    "blog"
+  ],
+  "bugs": {
+    "url": "https://github.com/TheYorkshireDev/theyorkshire-dot-dev/issues"
+  },
+  "dependencies": {
+    "gatsby": "^2.21.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
