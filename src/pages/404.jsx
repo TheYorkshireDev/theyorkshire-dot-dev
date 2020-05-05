@@ -1,5 +1,5 @@
-import React from "react"
-import Layout from "../components/Layout"
+import React from 'react';
+import Layout from '../components/Layout';
 
 const ErrorPage = () => (
   <Layout>
@@ -7,4 +7,4 @@ const ErrorPage = () => (
   </Layout>
 );
 
-export default ErrorPage
+export default ErrorPage;

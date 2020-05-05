@@ -1,7 +1,7 @@
-import React, { Fragment } from "react"
-import {Global, css} from "@emotion/core"
-import PropTypes from "prop-types"
-import normalize from "../styles/bootstrap-reboot.css"
+import React, { Fragment } from 'react';
+import { Global, css } from '@emotion/core';
+import PropTypes from 'prop-types';
+import normalize from '../styles/bootstrap-reboot.css';
 
 const Layout = ({ children }) => (
   <Fragment>
@@ -12,10 +12,10 @@ const Layout = ({ children }) => (
     />
     {children}
   </Fragment>
-)
+);
 
 Layout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
 };
 
-export default Layout
+export default Layout;

@@ -10,24 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/TheYorkshireDev/theyorkshire-dot-dev.git"
   },
+  "bugs": {
+    "url": "https://github.com/TheYorkshireDev/theyorkshire-dot-dev/issues"
+  },
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "rm -rf public && rm -rf .cache",
+    "format-output": "prettier src/**/*.{js,jsx}",
+    "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop"
-  },
-  "keywords": [
-    "TheYorkshireDev",
-    "Steven Cooney",
-    "GatsbyJS",
-    "personal",
-    "portfolio",
-    "website",
-    "blog"
-  ],
-  "bugs": {
-    "url": "https://github.com/TheYorkshireDev/theyorkshire-dot-dev/issues"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -37,5 +30,17 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  },
+  "keywords": [
+    "TheYorkshireDev",
+    "Steven Cooney",
+    "GatsbyJS",
+    "personal",
+    "portfolio",
+    "website",
+    "blog"
+  ]
 }
