@@ -4,6 +4,7 @@ variables:
     BranchName: ''
   ${{ if ne( variables['Build.SourceBranchName'], 'master') }}:
     BranchName: -${{ variables['Build.SourceBranchName'] }}
+  artifact_name: StaticWebsite
 
 name: $(BuildNumber)$(BranchName)
 
@@ -12,5 +13,7 @@ stages:
   jobs:
   - job: Build
     steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
+    - template: .azure-pipelines/npm-restore.yml
+    - template: .azure-pipelines/npm-build.yml
+    - template: .azure-pipelines/add-robots.yml
+    - template: .azure-pipelines/publish-artifact.yml

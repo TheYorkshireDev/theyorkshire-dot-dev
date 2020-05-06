@@ -1,0 +1,13 @@
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy Static Website'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/public'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Static Website Artifact'
+  inputs:
+    path: '$(build.artifactstagingdirectory)'
+    artifact: "$(artifact_name)"

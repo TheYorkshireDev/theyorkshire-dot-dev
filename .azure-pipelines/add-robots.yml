@@ -1,0 +1,5 @@
+steps:
+# If we are NOT on master then overwrite Robots.txt
+- script: 'echo -e "User-agent: *\nDisallow: /" > robots.txt'
+  displayName: 'Add Non-Production Robots.txt'
+  workingDirectory: '$(Build.SourcesDirectory)/public'
