@@ -12,8 +12,20 @@ stages:
 - stage: Build
   jobs:
   - job: Build
+    pool:
+      vmImage: 'ubuntu-18.04'
     steps:
     - template: .azure-pipelines/npm-restore.yml
     - template: .azure-pipelines/npm-build.yml
     - template: .azure-pipelines/add-robots.yml
     - template: .azure-pipelines/publish-artifact.yml
+
+- stage: Deploy
+  dependsOn: Build
+  jobs:
+  - job: DeployBeta
+    pool:
+      vmImage: 'windows-2019'
+    steps:
+    - template: .azure-pipelines/download-artifact.yml
+    - template: .azure-pipelines/deploy-to-azure.yml

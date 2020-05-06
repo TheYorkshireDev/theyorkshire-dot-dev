@@ -1,0 +1,6 @@
+steps:
+- task: DownloadPipelineArtifact@2
+  displayName: 'Download Static Website Artifact'
+  inputs:
+    artifact: "$(artifact_name)"
+    path: $(Pipeline.Workspace)/public

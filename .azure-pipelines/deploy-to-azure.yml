@@ -1,0 +1,37 @@
+steps:
+- task: AzureCLI@2
+  displayName: 'Purge $web Container'
+  inputs:
+    azureSubscription: 'YTD-Azure-Service-Connection'
+    scriptType: ps
+    scriptLocation: inlineScript
+    failOnStandardError: false
+    inlineScript: |
+        az storage blob delete-batch --source '$web' --account-name $env:STORAGE_ACCOUNT_NAME --pattern "*"
+  env:
+    STORAGE_ACCOUNT_NAME: $(storage_account_name)
+
+- task: AzureCLI@2
+  displayName: 'Copy Static Website Files to Azure Blob Storage'
+  inputs:
+    azureSubscription: 'YTD-Azure-Service-Connection'
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+        az storage blob upload-batch --destination '$web' --account-name $env:STORAGE_ACCOUNT_NAME --source '$(Pipeline.Workspace)/public' --pattern "*"
+  env:
+    STORAGE_ACCOUNT_NAME: $(storage_account_name)
+
+- task: AzureCLI@2
+  displayName: 'Purge CDN Endpoint'
+  inputs:
+    azureSubscription: 'YTD-Azure-Service-Connection'
+    scriptType: ps
+    scriptLocation: inlineScript
+    failOnStandardError: true
+    inlineScript: |
+        az cdn endpoint purge --resource-group $env:CDN_RESOURCE_GROUP --profile-name $env:CDN_PROFILE --name $env:CDN_ENDPOINT --content-paths "/*"
+  env:
+    CDN_RESOURCE_GROUP: $(cdn_resource_group)
+    CDN_PROFILE: $(cdn_profile)
+    CDN_ENDPOINT: $(cdn_endpoint)
