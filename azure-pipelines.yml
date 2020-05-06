@@ -1,0 +1,16 @@
+variables:
+  BuildNumber: $[counter('CustomBuildNumber', 0)]
+  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    BranchName: ''
+  ${{ if ne( variables['Build.SourceBranchName'], 'master') }}:
+    BranchName: -${{ variables['Build.SourceBranchName'] }}
+
+name: $(BuildNumber)$(BranchName)
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
