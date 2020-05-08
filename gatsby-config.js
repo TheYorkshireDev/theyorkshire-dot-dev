@@ -1,4 +1,9 @@
+const config = require('./config/site');
+
 module.exports = {
+  siteMetadata: {
+    menuLinks: config.menuLinks,
+  },
   plugins: [
     'gatsby-plugin-emotion',
     {
