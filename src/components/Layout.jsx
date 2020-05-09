@@ -15,8 +15,30 @@ const FlexStructure = styled.div`
   flex-direction: column;
 `;
 
-const PageContent = styled.div`
+const PageContent = styled.section`
   flex: 1;
+  padding-top: calc(
+    ${theme.headroom.navBar.logoHeight.mobile} + (${theme.headroom.padding} * 2) +
+      2rem
+  );
+  padding-right: 1.7rem;
+  padding-left: 1.7rem;
+
+  a {
+    text-decoration: underline;
+  }
+  a:hover {
+    font-weight: bold;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    width: 60%;
+    margin: auto;
+    padding-top: calc(
+      ${theme.headroom.navBar.logoHeight.mobile} +
+        (${theme.headroom.padding} * 2) + 3.5rem
+    );
+  }
 `;
 
 const Layout = ({ children }) => (

@@ -1,4 +1,5 @@
 import Typography from 'typography';
+const theme = require('./theme');
 
 export const typography = new Typography({
   title: 'TheYorkshireDevTypography',
@@ -40,6 +41,11 @@ export const typography = new Typography({
   ],
   headerWeight: 700,
   includeNormalize: true,
+  overrideStyles: () => ({
+    'h1,h2,h3,h4,h5,h6': {
+      color: theme.colors.primary,
+    },
+  }),
 });
 
 export default typography;

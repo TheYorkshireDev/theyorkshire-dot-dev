@@ -3,8 +3,8 @@
 ## TODO:
 - [x] NavBar
 - [x] Footer
-- [ ] Initial Page Formatting
-- [ ] 404
+- [x] Initial Page Formatting
+- [x] 404
 - [ ] Homepage
 - [ ] SEO
 - [ ] PWA
