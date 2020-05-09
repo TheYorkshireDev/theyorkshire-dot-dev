@@ -6,21 +6,26 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import theme from '../../config/theme';
+import themeTemplate from '../../config/theme';
 import headroom from '../styles/headroom';
 
 const FlexStructure = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  background-color: ${(props) =>
+    props.homepage ? props.theme.colors.primary : 'inherit'};
 `;
 
 const PageContent = styled.section`
   flex: 1;
+
   padding-top: calc(
-    ${theme.headroom.navBar.logoHeight.mobile} + (${theme.headroom.padding} * 2) +
-      2rem
+    ${(props) => props.theme.headroom.navBar.logoHeight.mobile} +
+      (${(props) => props.theme.headroom.padding} * 2) + 2rem
   );
+
   padding-right: 1.7rem;
   padding-left: 1.7rem;
 
@@ -32,16 +37,25 @@ const PageContent = styled.section`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
-    width: 60%;
+    width: 90%;
     margin: auto;
     padding-top: calc(
-      ${theme.headroom.navBar.logoHeight.mobile} +
-        (${theme.headroom.padding} * 2) + 3.5rem
+      ${(props) => props.theme.headroom.navBar.logoHeight.mobile} +
+        (${(props) => props.theme.headroom.padding} * 2) +
+        ${(props) => (props.homepage ? '2rem' : '3.5rem')}
     );
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
+    width: 80%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xlAndUp}) {
+    width: 60%;
   }
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, isIndex }) => (
   <StaticQuery
     query={graphql`
       query SiteQuery {
@@ -56,7 +70,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={(data) => (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeTemplate}>
         <Fragment>
           {/* NOTE: Typography.js Normalizes Browser Defaults */}
           <Global
@@ -80,7 +94,7 @@ const Layout = ({ children }) => (
               a:hover,
               a:active,
               a:visited {
-                color: ${theme.colors.primary};
+                color: ${themeTemplate.colors.primary};
               }
               a {
                 transition: color 0.5s;
@@ -93,9 +107,11 @@ const Layout = ({ children }) => (
               ${headroom}
             `}
           />
-          <FlexStructure>
+          <FlexStructure {...(isIndex ? { homepage: true } : {})}>
             <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
-            <PageContent>{children}</PageContent>
+            <PageContent {...(isIndex ? { homepage: true } : {})}>
+              {children}
+            </PageContent>
             <Footer />
           </FlexStructure>
         </Fragment>
@@ -106,6 +122,7 @@ const Layout = ({ children }) => (
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  isIndex: PropTypes.bool,
 };
 
 export default Layout;

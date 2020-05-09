@@ -6,6 +6,10 @@ module.exports = {
       path: '/',
     },
     {
+      name: 'about',
+      path: '/about',
+    },
+    {
       name: '404',
       path: '/404',
     },

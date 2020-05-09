@@ -5,10 +5,10 @@
 - [x] Footer
 - [x] Initial Page Formatting
 - [x] 404
-- [ ] Homepage
+- [X] Homepage
 - [ ] SEO
 - [ ] PWA
-- [ ] About
+- [X] About
 - [ ] Career
 - [ ] Prod Build & GA
 - [ ] Blogging
