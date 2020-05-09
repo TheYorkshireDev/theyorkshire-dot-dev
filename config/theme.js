@@ -1,6 +1,9 @@
 export const colors = {
   primary: '#0b536a',
   white: '#ffffff',
+  black: '#000000',
+  twitter: '#00acee',
+  linkedIn: '#0e76a8',
 };
 
 export const theme = {

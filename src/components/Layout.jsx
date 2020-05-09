@@ -2,10 +2,22 @@ import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
+import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import theme from '../../config/theme';
 import headroom from '../styles/headroom';
+
+const FlexStructure = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+`;
+
+const PageContent = styled.div`
+  flex: 1;
+`;
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -59,8 +71,11 @@ const Layout = ({ children }) => (
               ${headroom}
             `}
           />
-          <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
-          {children}
+          <FlexStructure>
+            <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
+            <PageContent>{children}</PageContent>
+            <Footer />
+          </FlexStructure>
         </Fragment>
       </ThemeProvider>
     )}

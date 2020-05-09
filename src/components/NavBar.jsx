@@ -147,7 +147,7 @@ const NavBar = ({ menuLinks }) => {
           {navbarOpen ? <MobileMenuIcon open /> : <MobileMenuIcon />}
         </MobileMenuToggle>
 
-        <NavContainer {...(navbarOpen ? { open } : {})}>
+        <NavContainer {...(navbarOpen ? { open: true } : {})}>
           {menuLinks.map((link) => (
             <NavLink key={link.name} to={link.path} activeClassName="is-active">
               {link.name}
