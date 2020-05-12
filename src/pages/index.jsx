@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Layout from '../components/Layout';
 import styled from '@emotion/styled';
 import RoundLogo from '../../static/logo/logo.inline.svg';
@@ -39,6 +40,7 @@ const TwitterLink = styled.a`
 
 const IndexPage = () => (
   <Layout isIndex={true}>
+    <Helmet title={'Steven Cooney (TheYorkshireDev) | Software Developer'} />
     <HomepageContainer>
       <LogoContainer>
         <RoundLogo />

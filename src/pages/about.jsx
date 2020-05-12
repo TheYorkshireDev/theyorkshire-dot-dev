@@ -1,8 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Layout from '../components/Layout';
 
 const AboutPage = () => (
   <Layout>
+    <Helmet title={'About Me | Steven Cooney (TheYorkshireDev)'} />
     <h1>About Me</h1>
     <p>
       I&apos;m a Software Developer based in Leeds, UK. I hold a first-class

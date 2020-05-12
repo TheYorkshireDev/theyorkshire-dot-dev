@@ -4,6 +4,7 @@ import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import SEO from './SEO';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import themeTemplate from '../../config/theme';
@@ -108,6 +109,7 @@ const Layout = ({ children, isIndex }) => (
             `}
           />
           <FlexStructure {...(isIndex ? { homepage: true } : {})}>
+            <SEO />
             <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
             <PageContent {...(isIndex ? { homepage: true } : {})}>
               {children}

@@ -5,6 +5,13 @@ module.exports = {
     menuLinks: config.menuLinks,
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-react-helmet-canonical-urls',
+      options: {
+        siteUrl: config.siteUrl,
+      },
+    },
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-typography',
