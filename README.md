@@ -6,8 +6,8 @@
 - [x] Initial Page Formatting
 - [x] 404
 - [X] Homepage
-- [ ] SEO
-- [ ] PWA
+- [X] SEO
+- [X] PWA
 - [X] About
 - [ ] Career
 - [ ] Prod Build & GA

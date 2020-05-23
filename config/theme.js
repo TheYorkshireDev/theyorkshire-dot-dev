@@ -1,4 +1,5 @@
 export const colors = {
+  // Also update themeColor in site.js
   primary: '#0b536a',
   white: '#ffffff',
   black: '#000000',

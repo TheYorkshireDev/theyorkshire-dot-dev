@@ -3,6 +3,7 @@ module.exports = {
   siteLanguage: 'en', // Language Tag on <html> element
   siteTitle: 'Steven Cooney - Personal Portfolio and Blog',
   siteBanner: '/logo/banner.png',
+  siteIcon: 'static/logo/logo.svg',
   siteShortName: 'TheYorkshire.Dev',
   siteUrl: 'https://theyorkshire.dev',
   siteDescription:
@@ -11,7 +12,11 @@ module.exports = {
   // IDs
   twitterHandle: '@TheYorkshireDev',
 
+  // Manifest
   author: 'Steven Cooney', // Author for schemaORGJSONLD
+  appShortName: 'TYD Blog',
+  appStartUrl: '/',
+  themeColor: '#0b536a', // Also update primary in theme.js
 
   menuLinks: [
     {

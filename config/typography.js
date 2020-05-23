@@ -5,17 +5,12 @@ export const typography = new Typography({
   title: 'TheYorkshireDevTypography',
   baseFontSize: '18px',
   baseLineHeight: 1.58,
-  googleFonts: [
-    {
-      name: 'Roboto',
-      styles: ['400', '400i', '700', '700i'],
-    },
-  ],
   headerFontFamily: [
     'Roboto',
     '-apple-system',
     'BlinkMacSystemFont',
     'Segoe UI',
+    // 'Roboto',
     'Helvetica Neue',
     'Arial',
     'Noto Sans',
@@ -30,6 +25,7 @@ export const typography = new Typography({
     '-apple-system',
     'BlinkMacSystemFont',
     'Segoe UI',
+    // 'Roboto',
     'Helvetica Neue',
     'Arial',
     'Noto Sans',

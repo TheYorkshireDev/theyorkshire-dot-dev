@@ -30,7 +30,6 @@ const SEO = () => {
       <meta name="author" content={config.author} />
       <meta name="description" content={description} />
       <meta name="image" content={pageImagePath} />
-      {/* <link name="icon" content={config.favicon} /> */}
       <meta name="apple-mobile-web-app-title" content={config.siteShortName} />
       <meta name="application-name" content={config.siteShortName} />
 
