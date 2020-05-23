@@ -28,8 +28,8 @@ module.exports = {
       path: '/about',
     },
     {
-      name: '404',
-      path: '/404',
+      name: 'career',
+      path: '/career',
     },
   ],
 };

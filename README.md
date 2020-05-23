@@ -9,6 +9,6 @@
 - [X] SEO
 - [X] PWA
 - [X] About
-- [ ] Career
+- [X] Career
 - [ ] Prod Build & GA
 - [ ] Blogging
