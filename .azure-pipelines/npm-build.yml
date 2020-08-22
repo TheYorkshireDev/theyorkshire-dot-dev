@@ -1,8 +1,20 @@
 steps:
 - task: Npm@1
+  condition: eq(variables['deployToProduction'], 'False')
   displayName: 'Compile Gatsby Static Website'
   inputs:
     command: custom
     verbose: false
     customCommand: 'run build'
   enabled: true
+
+- task: Npm@1
+  condition: eq(variables['deployToProduction'], 'True')
+  displayName: 'Compile Gatsby Production Static Website'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+  enabled: true
+  env:
+    GA_TOKEN: $(ga_token)

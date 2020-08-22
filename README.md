@@ -10,5 +10,15 @@
 - [X] PWA
 - [X] About
 - [X] Career
-- [ ] Prod Build & GA
+- [X] Prod Build & GA
+- [ ] Netlify Prod Deployment
 - [ ] Blogging
+
+## Azure Pipeline Variables
+
+In Azure set variables of:
+* `cdn_endpoint`
+* `cdn_profile`
+* `cdn_resource_group`
+* `ga_token`
+* `storage_account_name`

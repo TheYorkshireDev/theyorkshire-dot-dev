@@ -6,6 +6,16 @@ module.exports = {
     menuLinks: config.menuLinks,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: process.env.GA_TOKEN,
+        // this option places the tracking script into the head of the DOM
+        head: true,
+        anonymize: true,
+        // other options
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-react-helmet-canonical-urls',

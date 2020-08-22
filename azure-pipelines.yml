@@ -1,15 +1,25 @@
 variables:
-  BuildNumber: $[counter('CustomBuildNumber', 0)]
+  # Update build ID if we are working on a feature branch
   ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
     BranchName: ''
-  ${{ if ne( variables['Build.SourceBranchName'], 'master') }}:
-    BranchName: -${{ variables['Build.SourceBranchName'] }}
+    Separator: ''
+    Revision: $[counter('TYDBuildNumber', 1)]
+    isWebsiteBranchMaster: true
+  ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
+    BranchName: ${{ variables['Build.SourceBranchName'] }}
+    Separator: '.'
+    Revision: $[counter(variables['Build.SourceBranchName'], 1)]
+    isWebsiteBranchMaster: false
   artifact_name: StaticWebsite
 
-name: $(BuildNumber)$(BranchName)
+name: $(BranchName)$(Separator)$(Revision)
 
 stages:
 - stage: Build
+  variables:
+    # Deploy to Production if:
+    # 1. Website has a new change on Master
+    deployToProduction: $[ eq(variables['isWebsiteBranchMaster'], true) ]
   jobs:
   - job: Build
     pool:
@@ -22,10 +32,23 @@ stages:
 
 - stage: Deploy
   dependsOn: Build
+  variables:
+    # Deploy to Production if:
+    # 1. Website has a new change on Master
+    deployToProduction: $[ eq(variables['isWebsiteBranchMaster'], true) ]
   jobs:
-  - job: DeployBeta
+  - job: DeployStage
+    condition: and(succeeded(), eq(variables['deployToProduction'], 'False'))
     pool:
       vmImage: 'windows-2019'
     steps:
     - template: .azure-pipelines/download-artifact.yml
     - template: .azure-pipelines/deploy-to-azure.yml
+
+  - job: DeployProduction
+    condition: and(succeeded(), eq(variables['deployToProduction'], 'True'))
+    pool:
+      vmImage: 'windows-2019'
+    steps:
+      - powershell: |
+          echo "TODO Deploy PRODUCTION Site..."
