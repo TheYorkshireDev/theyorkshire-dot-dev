@@ -1,5 +1,10 @@
 steps:
-# If we are NOT on master then overwrite Robots.txt
+# If we are NOT deploying to production then overwrite Robots.txt
 - script: 'echo -e "User-agent: *\nDisallow: /" > robots.txt'
   displayName: 'Add Non-Production Robots.txt'
+  workingDirectory: '$(Build.SourcesDirectory)/public'
+  condition: eq(variables['deployToProduction'], 'False')
+
+- script: 'cat robots.txt'
+  displayName: 'Print Robots.txt'
   workingDirectory: '$(Build.SourcesDirectory)/public'

@@ -11,7 +11,7 @@
 - [X] About
 - [X] Career
 - [X] Prod Build & GA
-- [ ] Netlify Prod Deployment
+- [X] Netlify Prod Deployment
 - [ ] Blogging
 
 ## Azure Pipeline Variables
@@ -21,4 +21,6 @@ In Azure set variables of:
 * `cdn_profile`
 * `cdn_resource_group`
 * `ga_token`
+* `NETLIFY_AUTH_TOKEN`
+* `NETLIFY_SITE_ID`
 * `storage_account_name`

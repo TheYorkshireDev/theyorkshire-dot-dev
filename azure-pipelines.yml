@@ -48,7 +48,8 @@ stages:
   - job: DeployProduction
     condition: and(succeeded(), eq(variables['deployToProduction'], 'True'))
     pool:
-      vmImage: 'windows-2019'
+      vmImage: 'Ubuntu 16.04'
+    container: ebati/netlify-cli:latest
     steps:
-      - powershell: |
-          echo "TODO Deploy PRODUCTION Site..."
+    - template: .azure-pipelines/download-artifact.yml
+    - template: .azure-pipelines/deploy-to-netlify.yml

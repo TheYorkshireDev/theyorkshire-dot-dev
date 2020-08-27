@@ -1,0 +1,9 @@
+steps:
+- task: Bash@3
+  displayName: 'Deploy to Netlify'
+  inputs:
+    targetType: 'inline'
+    script: netlify deploy --dir='$(Pipeline.Workspace)/public' --prod --message="Build No. $(Build.BuildNumber)"
+  env:
+    NETLIFY_SITE_ID: $(NETLIFY_SITE_ID)
+    NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://theyorkshire.dev/sitemap.xml
