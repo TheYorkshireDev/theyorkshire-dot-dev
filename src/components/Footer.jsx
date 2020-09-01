@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -24,7 +25,7 @@ const FooterItem = styled.div`
 `;
 
 const FooterLeft = styled(FooterItem)`
-  line-height: 2.2rem;
+  padding-top: 0.5rem;
 
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
     padding-bottom: 0;
@@ -44,7 +45,7 @@ const FooterMiddle = styled(FooterItem)`
 `;
 
 const FooterRight = styled(FooterItem)`
-  display: none;
+  line-height: 2.2rem;
 
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
     display: block;
@@ -80,6 +81,21 @@ const LinkedInLink = styled(FooterLink)`
   }
 `;
 
+const CreditsLink = styled(Link)`
+  color: ${(props) => props.theme.colors.white};
+  :hover,
+  :active,
+  :visited {
+    color: ${(props) => props.theme.colors.white};
+  }
+
+  text-decoration: underline;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    text-decoration: none;
+  }
+`;
+
 const Footer = () => (
   <Wrapper>
     <FooterLeft>© {new Date().getFullYear()} - TheYorkshireDev</FooterLeft>
@@ -111,7 +127,9 @@ const Footer = () => (
         <FaLinkedin />
       </LinkedInLink>
     </FooterMiddle>
-    <FooterRight />
+    <FooterRight>
+      <CreditsLink to="/credits">Credits</CreditsLink>
+    </FooterRight>
   </Wrapper>
 );
 
