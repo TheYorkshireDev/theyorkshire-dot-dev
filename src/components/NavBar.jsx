@@ -13,10 +13,6 @@ const Navigation = styled.nav`
   .is-active {
     font-weight: bold;
     text-decoration: underline;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
-      text-decoration: none;
-    }
   }
 `;
 
