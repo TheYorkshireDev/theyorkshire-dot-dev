@@ -1,7 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
+
 import Layout from '../components/Layout';
+import UpperH1 from '../components/UpperH1';
 import TwentyTwelve from '../../static/twentytwelve-heading.inline.svg';
 import TwentyThirteen from '../../static/twentythirteen-heading.inline.svg';
 import TwentyFourteen from '../../static/twentyfourteen-heading.inline.svg';
@@ -50,7 +52,7 @@ const TwentyNineteenHeading = styled(TwentyNineteen)`
 const CareerPage = () => (
   <Layout>
     <Helmet title={'Career | Steven Cooney (TheYorkshireDev)'} />
-    <h1>Education &amp; Career</h1>
+    <UpperH1>Education &amp; Career</UpperH1>
     <p>
       Until university, I never wanted to be a software developer. I had no idea
       what I wanted to do but took a chance at a Computer Science degree because

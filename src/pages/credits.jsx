@@ -1,18 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import styled from '@emotion/styled';
-import Layout from '../components/Layout';
 
-const SubHeader = styled.h2`
-  margin-bottom: 1rem;
-`;
+import Layout from '../components/Layout';
+import UpperH1 from '../components/UpperH1';
+import UpperH2 from '../components/UpperH2';
 
 const CreditsPage = () => (
   <Layout>
     <Helmet title={'Credits | Steven Cooney (TheYorkshireDev)'} />
-    <h1>Credits</h1>
+    <UpperH1>Credits</UpperH1>
 
-    <SubHeader>Inspired By</SubHeader>
+    <UpperH2>Inspired By</UpperH2>
 
     <p>
       <em>Phil Hawksworth</em>
@@ -71,7 +69,7 @@ const CreditsPage = () => (
       both to recent redesigns.
     </p>
 
-    <SubHeader>Logo Designs</SubHeader>
+    <UpperH2>Logo Designs</UpperH2>
 
     <p>
       <em>Elliott Brodowski</em>
@@ -91,7 +89,7 @@ const CreditsPage = () => (
       the website.
     </p>
 
-    <SubHeader>Gatsby Education</SubHeader>
+    <UpperH2>Gatsby Education</UpperH2>
 
     <p>
       <em>Justin Formentin</em>

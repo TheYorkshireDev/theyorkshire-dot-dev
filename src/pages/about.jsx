@@ -1,11 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+
 import Layout from '../components/Layout';
+import UpperH1 from '../components/UpperH1';
+import UpperH2 from '../components/UpperH2';
 
 const AboutPage = () => (
   <Layout>
     <Helmet title={'About Me | Steven Cooney (TheYorkshireDev)'} />
-    <h1>About Me</h1>
+    <UpperH1>About Me</UpperH1>
     <p>
       I&apos;m a Software Developer based in Leeds, UK. I hold a first-class
       degree in Computer Science from the University of Leeds and am currently
@@ -29,7 +32,8 @@ const AboutPage = () => (
       also like keeping in touch with my University and usually present a guest
       lecture to students on the Computer Science course once a year.
     </p>
-    <h2>Passions Beyond Software Development</h2>
+
+    <UpperH2>Passions Beyond Software Development</UpperH2>
     <p>
       Even though I do a lot of programming in my professional and spare time,
       there are other things I enjoy too. Pool, Snooker and Football (or soccer
