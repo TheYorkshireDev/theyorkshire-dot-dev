@@ -1,0 +1,224 @@
+import React, { useState } from 'react';
+import Helmet from 'react-helmet';
+import { graphql, Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { IconContext } from 'react-icons';
+import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
+
+import Layout from '../components/Layout';
+import UpperH1 from '../components/UpperH1';
+
+const SplitContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  text-decoration: none;
+
+  .visible {
+    display: inline-block;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    flex-direction: row;
+  }
+`;
+
+const PostSection = styled.div`
+  flex-basis: 80%;
+`;
+
+const TagSection = styled.div`
+  display: none;
+  flex-basis: 20%;
+  text-align: center;
+  padding-bottom: 0.7em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    display: inline-block;
+    padding-bottom: 0;
+  }
+`;
+
+const TagList = styled.div`
+  margin: 0;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    margin-left: 1rem;
+  }
+`;
+
+const TagBtn = styled.div`
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.primary};
+  border: solid 1px ${(props) => props.theme.colors.primary};
+
+  a {
+    text-decoration: none;
+  }
+
+  :hover {
+    border: solid 1px ${(props) => props.theme.colors.primary};
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    border: solid 1px ${(props) => props.theme.colors.white};
+  }
+`;
+
+const TagLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 0.8rem;
+  color: ${(props) => props.theme.colors.primary};
+`;
+
+const FilterToggle = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.primary};
+
+  margin-bottom: 10px;
+
+  .hide {
+    display: none;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
+    display: none;
+  }
+`;
+
+const BlogPage = ({ data }) => {
+  const [tagsHidden, hideTags] = useState(true);
+  const allTags = data.allTags.nodes;
+
+  let flattenedTags = allTags.reduce(function (accumulator, currentValue) {
+    return accumulator.concat(currentValue.frontmatter.tags);
+  }, []);
+
+  let groupedTags = flattenedTags.reduce(function (tags, tag) {
+    if (tag in tags) {
+      tags[tag]++;
+    } else {
+      tags[tag] = 1;
+    }
+    return tags;
+  }, []);
+
+  var tags = Object.keys(groupedTags).map((k) => {
+    return { key: k, value: groupedTags[k] };
+  });
+
+  return (
+    <Layout>
+      <Helmet title={'Blog | Steven Cooney (TheYorkshireDev)'} />
+      <UpperH1>Recent Articles</UpperH1>
+
+      <SplitContainer>
+        <PostSection>Blog posts are coming...</PostSection>
+        <TagSection className={tagsHidden ? '' : 'visible'}>
+          <TagList>
+            {tags &&
+              tags.map((tag) => {
+                return (
+                  <TagBtn key={tag.key}>
+                    <TagLink to={`/tags/${tag.key}`}>
+                      {tag.key} ({tag.value})
+                    </TagLink>
+                  </TagBtn>
+                );
+              })}
+          </TagList>
+        </TagSection>
+
+        <FilterToggle onClick={() => hideTags(!tagsHidden)}>
+          <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+            <FaFilter />
+            <span className={tagsHidden ? '' : 'hide'}>
+              {' '}
+              <FaRegPlusSquare />
+            </span>
+            <span className={tagsHidden ? 'hide' : ''}>
+              {' '}
+              <FaRegMinusSquare />
+            </span>
+          </IconContext.Provider>
+        </FilterToggle>
+      </SplitContainer>
+    </Layout>
+  );
+};
+
+export default BlogPage;
+
+BlogPage.propTypes = {
+  data: PropTypes.shape({
+    posts: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            id: PropTypes.string,
+            excerpt: PropTypes.string,
+            frontmatter: PropTypes.shape({
+              title: PropTypes.string.isRequired,
+              tags: PropTypes.array,
+              path: PropTypes.string.isRequired,
+              date: PropTypes.string.isRequired,
+              cover: PropTypes.object.isRequired,
+            }),
+          }),
+        }).isRequired
+      ),
+    }),
+    allTags: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          frontmatter: PropTypes.shape({
+            tags: PropTypes.array,
+          }),
+        })
+      ),
+    }),
+  }),
+};
+
+export const query = graphql`
+  query {
+    posts: allMarkdownRemark(
+      limit: 6
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 75)
+          frontmatter {
+            title
+            path
+            tags
+            date(formatString: "D MMMM YYYY")
+            cover {
+              childImageSharp {
+                fluid(
+                  maxWidth: 1000
+                  quality: 90
+                  traceSVG: { color: "#0B536A" }
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allTags: allMarkdownRemark {
+      nodes {
+        frontmatter {
+          tags
+        }
+      }
+    }
+  }
+`;

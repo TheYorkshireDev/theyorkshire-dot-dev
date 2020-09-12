@@ -23,6 +23,33 @@ module.exports = {
         siteUrl: config.siteUrl,
       },
     },
+    'gatsby-plugin-catch-links',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/content/posts`,
+      },
+    },
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 750,
+              quality: 90,
+              linkImagesToOriginal: true,
+            },
+          },
+          'gatsby-remark-prismjs',
+          'gatsby-remark-autolink-headers',
+        ],
+      },
+    },
+    'gatsby-plugin-sharp',
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-webfonts',

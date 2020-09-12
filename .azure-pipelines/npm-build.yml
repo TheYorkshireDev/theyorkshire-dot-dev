@@ -18,3 +18,4 @@ steps:
   enabled: true
   env:
     GA_TOKEN: $(ga_token)
+    EXCLUDE_PATHS: $(EXCLUDE_PAGES)
