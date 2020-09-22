@@ -3,12 +3,18 @@ export const colors = {
   primary: '#0b536a',
   white: '#ffffff',
   black: '#000000',
+  grey: '#e4e4e4',
   twitter: '#00acee',
   linkedIn: '#0e76a8',
 };
 
+export const shadow = {
+  post: '0 3px 15px rgba(0,0,0,.2)',
+};
+
 export const theme = {
   colors,
+  shadow,
   breakpoints: {
     // Extra small devices (portrait phones, less than 576px)
     smallAndUp: '576px', // Small devices (landscape phones, 576px and up)

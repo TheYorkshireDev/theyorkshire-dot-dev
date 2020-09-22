@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons';
 import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 
 import Layout from '../components/Layout';
+import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
 
 const SplitContainer = styled.div`
@@ -91,6 +92,7 @@ const FilterToggle = styled.div`
 
 const BlogPage = ({ data }) => {
   const [tagsHidden, hideTags] = useState(true);
+  const { edges } = data.posts;
   const allTags = data.allTags.nodes;
 
   let flattenedTags = allTags.reduce(function (accumulator, currentValue) {
@@ -116,7 +118,24 @@ const BlogPage = ({ data }) => {
       <UpperH1>Recent Articles</UpperH1>
 
       <SplitContainer>
-        <PostSection>Blog posts are coming...</PostSection>
+        <PostSection itemScope itemType="http://schema.org/Blog">
+          {edges.map(({ node }) => {
+            const { id, excerpt, frontmatter } = node;
+            const { title, tags, path, date, cover } = frontmatter;
+            return (
+              <PostList
+                key={id}
+                title={title}
+                tags={tags}
+                path={path}
+                date={date}
+                cover={cover.childImageSharp.fluid}
+                excerpt={excerpt}
+              />
+            );
+          })}
+        </PostSection>
+
         <TagSection className={tagsHidden ? '' : 'visible'}>
           <TagList>
             {tags &&
