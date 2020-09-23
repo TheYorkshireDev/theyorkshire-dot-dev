@@ -9,6 +9,7 @@ import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
+import { getTagCounts } from '../util/utils';
 
 const SplitContainer = styled.div`
   display: flex;
@@ -93,24 +94,8 @@ const FilterToggle = styled.div`
 const BlogPage = ({ data }) => {
   const [tagsHidden, hideTags] = useState(true);
   const { edges } = data.posts;
-  const allTags = data.allTags.nodes;
-
-  let flattenedTags = allTags.reduce(function (accumulator, currentValue) {
-    return accumulator.concat(currentValue.frontmatter.tags);
-  }, []);
-
-  let groupedTags = flattenedTags.reduce(function (tags, tag) {
-    if (tag in tags) {
-      tags[tag]++;
-    } else {
-      tags[tag] = 1;
-    }
-    return tags;
-  }, []);
-
-  var tags = Object.keys(groupedTags).map((k) => {
-    return { key: k, value: groupedTags[k] };
-  });
+  const postTags = data.allTags.nodes;
+  const tags = getTagCounts(postTags);
 
   return (
     <Layout>

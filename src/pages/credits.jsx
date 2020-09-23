@@ -115,7 +115,7 @@ const CreditsPage = () => (
       </a>
       <br />
       <br />
-      My first foray into Gatsby was following Justin's&nbsp;
+      My first foray into Gatsby was following Justin&apos;s{' '}
       <a
         target="_blank"
         rel="noopener noreferrer"
