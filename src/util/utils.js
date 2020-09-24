@@ -1,6 +1,6 @@
 const _ = require('lodash/string');
 
-export const getTagCounts = (nodesWithTags) => {
+const getTagCounts = (nodesWithTags) => {
   let flattenedTags = nodesWithTags.reduce(function (
     accumulator,
     currentValue
@@ -27,10 +27,13 @@ export const getTagCounts = (nodesWithTags) => {
   return tags;
 };
 
-export const formatTagSlug = (tag) => {
+const formatTagSlug = (tag) => {
   if (tag.toLocaleLowerCase() === 'c#') {
     tag = 'c-sharp';
   }
 
   return _.kebabCase(tag.toLocaleLowerCase());
 };
+
+module.exports.getTagCounts = getTagCounts;
+module.exports.formatTagSlug = formatTagSlug;

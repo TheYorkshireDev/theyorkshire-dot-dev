@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -9,7 +9,7 @@ import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
-import { getTagCounts } from '../util/utils';
+import { formatTagSlug, getTagCounts } from '../util/utils';
 
 const SplitContainer = styled.div`
   display: flex;
@@ -127,7 +127,7 @@ const BlogPageTemplate = ({ data }) => {
               tags.map((tag) => {
                 return (
                   <TagBtn key={tag.key}>
-                    <TagLink to={`/tags/${tag.key}`}>
+                    <TagLink to={`/tags/${formatTagSlug(tag.key)}`}>
                       {tag.key} ({tag.value})
                     </TagLink>
                   </TagBtn>

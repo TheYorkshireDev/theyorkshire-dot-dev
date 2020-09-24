@@ -63,6 +63,7 @@ const Information = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 `;
 
@@ -88,6 +89,7 @@ const Date = styled.p`
   text-align: right;
   font-size: 0.8rem;
   margin-bottom: 0.6rem;
+  margin-left: auto;
 `;
 
 const Excerpt = styled.p`

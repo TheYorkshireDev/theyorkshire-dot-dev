@@ -1,16 +1,23 @@
 const path = require('path');
+const { formatTagSlug } = require(path.resolve('src/util/utils'));
 
-exports.onCreatePage = ({ page, actions }) => {
+const excludePage = (path) => {
   if (
     process.env.EXCLUDE_PATHS === undefined ||
     process.env.EXCLUDE_PATHS === ''
   ) {
-    return;
+    return false;
   }
 
   var pathsToIgnore = process.env.EXCLUDE_PATHS.split(',');
 
-  if (pathsToIgnore.indexOf(page.path) >= 0) {
+  if (pathsToIgnore.indexOf(path) >= 0) {
+    return true;
+  }
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  if (excludePage(page.path)) {
     const { deletePage } = actions;
     deletePage(page);
   }
@@ -21,6 +28,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogLists = path.resolve('src/templates/blog-list.jsx');
+    const tagPosts = path.resolve('src/templates/tag.jsx');
 
     resolve(
       graphql(
@@ -46,23 +54,69 @@ exports.createPages = ({ graphql, actions }) => {
           return reject(result.errors);
         }
 
-        // Create blog-list pages
         const posts = result.data.allMarkdownRemark.edges;
+
+        // Organise posts by tags
+        const postsByTag = {};
+
+        posts.forEach(({ node }) => {
+          if (node.frontmatter.tags) {
+            node.frontmatter.tags.forEach((tag) => {
+              if (!postsByTag[tag]) {
+                postsByTag[tag] = [];
+              }
+
+              postsByTag[tag].push(node);
+            });
+          }
+        });
+
+        const tags = Object.keys(postsByTag);
+
+        // Create blog-list pages
         const postsPerPage = 6;
         const numPages = Math.ceil(posts.length / postsPerPage);
 
-        Array.from({ length: numPages }).forEach((_, i) => {
-          createPage({
-            path: i === 0 ? '/blog' : `/blog/${i + 1}`,
-            component: blogLists,
-            context: {
-              limit: postsPerPage,
-              skip: i * postsPerPage,
-              numPages,
-              currentPage: i + 1,
-            },
+        if (!excludePage('/blog/')) {
+          Array.from({ length: numPages }).forEach((_, i) => {
+            createPage({
+              path: i === 0 ? '/blog/' : `/blog/${i + 1}`,
+              component: blogLists,
+              context: {
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPages,
+                currentPage: i + 1,
+              },
+            });
           });
-        });
+        }
+
+        // Create individual tag pages
+        if (!excludePage('/tags/')) {
+          tags.forEach((tagName) => {
+            const posts = postsByTag[tagName];
+            const postsPerPage = 6;
+            const numPages = Math.ceil(posts.length / postsPerPage);
+
+            Array.from({ length: numPages }).forEach((_, i) => {
+              createPage({
+                path:
+                  i === 0
+                    ? `/tags/${formatTagSlug(tagName)}`
+                    : `/tags/${formatTagSlug(tagName)}/${i + 1}`,
+                component: tagPosts,
+                context: {
+                  tag: tagName,
+                  limit: postsPerPage,
+                  skip: i * postsPerPage,
+                  numPages,
+                  currentPage: i + 1,
+                },
+              });
+            });
+          });
+        }
       })
     );
   });

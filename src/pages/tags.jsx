@@ -8,6 +8,25 @@ import Layout from '../components/Layout';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
 
+const ButtonStyling = `
+  padding: 0.25rem 0.85rem;
+  border-radius: 0.4rem;
+  margin: 0.3rem 0.6rem 0.3rem 0px;
+  white-space: nowrap;
+  text-decoration: none;
+`;
+
+const AllPostsButton = styled.div`
+  padding: 1rem 0;
+  text-align: center;
+
+  a {
+    color: ${(props) => props.theme.colors.primary};
+    border: solid 1px ${(props) => props.theme.colors.primary};
+    ${ButtonStyling}
+  }
+`;
+
 const TagContainer = styled.div`
   margin: 1rem 0;
   display: flex;
@@ -18,11 +37,7 @@ const TagContainer = styled.div`
   a {
     background: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.white};
-    padding: 0.25rem 0.85rem;
-    border-radius: 0.4rem;
-    margin: 0.3rem 0.6rem 0.3rem 0px;
-    white-space: nowrap;
-    text-decoration: none;
+    ${ButtonStyling}
   }
 `;
 
@@ -38,6 +53,10 @@ const TagsPage = ({ data }) => {
     <Layout>
       <Helmet title={'Tags | Steven Cooney (TheYorkshireDev)'} />
       <UpperH1>Tags</UpperH1>
+
+      <AllPostsButton>
+        <Link to="/blog">All Posts</Link>
+      </AllPostsButton>
 
       <TagContainer>
         {tags &&
