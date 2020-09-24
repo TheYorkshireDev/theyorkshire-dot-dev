@@ -91,7 +91,7 @@ const FilterToggle = styled.div`
   }
 `;
 
-const BlogPage = ({ data }) => {
+const BlogPageTemplate = ({ data }) => {
   const [tagsHidden, hideTags] = useState(true);
   const { edges } = data.posts;
   const postTags = data.allTags.nodes;
@@ -100,7 +100,7 @@ const BlogPage = ({ data }) => {
   return (
     <Layout>
       <Helmet title={'Blog | Steven Cooney (TheYorkshireDev)'} />
-      <UpperH1>Recent Articles</UpperH1>
+      <UpperH1>All Posts</UpperH1>
 
       <SplitContainer>
         <PostSection itemScope itemType="http://schema.org/Blog">
@@ -154,9 +154,9 @@ const BlogPage = ({ data }) => {
   );
 };
 
-export default BlogPage;
+export default BlogPageTemplate;
 
-BlogPage.propTypes = {
+BlogPageTemplate.propTypes = {
   data: PropTypes.shape({
     posts: PropTypes.shape({
       edges: PropTypes.arrayOf(
@@ -188,10 +188,11 @@ BlogPage.propTypes = {
 };
 
 export const query = graphql`
-  query {
+  query blogListQuery($skip: Int!, $limit: Int!) {
     posts: allMarkdownRemark(
-      limit: 6
-      sort: { order: DESC, fields: [frontmatter___date] }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
