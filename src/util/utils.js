@@ -35,5 +35,10 @@ const formatTagSlug = (tag) => {
   return _.kebabCase(tag.toLocaleLowerCase());
 };
 
+const formatPostPath = (slug) => {
+  return '/blog/' + slug;
+};
+
 module.exports.getTagCounts = getTagCounts;
 module.exports.formatTagSlug = formatTagSlug;
+module.exports.formatPostPath = formatPostPath;

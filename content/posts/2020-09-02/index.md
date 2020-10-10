@@ -1,8 +1,9 @@
 ---
-path: "/local-post"
+slug: "local-post"
 cover: "./img.jpg"
 date: "2020-09-02"
 title: "Local Blog Post"
+description: "A short description for this post"
 tags: ["Tag1", "Tag2", "Tag3"]
 ---
 

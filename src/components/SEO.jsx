@@ -1,24 +1,69 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+
 import config from '../../config/site';
 
-const SEO = () => {
+const SEO = ({
+  postTitle,
+  postDescription,
+  postBanner,
+  pagePath,
+  article,
+  blog,
+}) => {
   // TODO: Override these if the page is a blog post
-  let title = config.siteTitle;
-  let description = config.siteDescription;
-  let image = config.siteBanner; // Default is the site banner
-  let ogType = 'website';
-  let pageImagePath = `${config.siteUrl}${image}`;
-  let seoUrl = `${config.siteUrl}`;
+  let title = postTitle || config.siteTitle;
+  let description = postDescription || config.siteDescription;
+  let defaultImage = config.siteBanner; // Default is the site banner
+  let ogType = blog ? 'blog' : article ? 'article' : 'website';
+  let pageImagePath = `${config.siteUrl}${postBanner || defaultImage}`;
+  let seoUrl = `${pagePath || config.siteUrl}`;
 
-  const schemaOrgJSONLD = [
+  let schemaOrgJSONLD = [
     {
       '@context': 'http://schema.org',
       '@type': 'WebSite',
+      '@id': config.siteUrl,
       url: config.siteUrl,
       name: title,
     },
   ];
+
+  if (article) {
+    schemaOrgJSONLD = [
+      {
+        '@context': 'http://schema.org',
+        '@type': 'BlogPosting',
+        '@id': seoUrl,
+        url: seoUrl,
+        name: title,
+        headline: title,
+        image: {
+          '@type': 'ImageObject',
+          url: pageImagePath,
+        },
+        description: description,
+        author: {
+          '@type': 'Person',
+          name: config.author,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: config.author,
+          logo: {
+            '@type': 'ImageObject',
+            url: defaultImage,
+          },
+        },
+        isPartOf: config.siteUrl,
+        mainEntityOfPage: {
+          '@type': 'WebSite',
+          '@id': config.siteUrl,
+        },
+      },
+    ];
+  }
 
   return (
     // TODO: Review entries for particular blog posts which should
@@ -58,3 +103,21 @@ const SEO = () => {
 };
 
 export default SEO;
+
+SEO.propTypes = {
+  postTitle: PropTypes.string,
+  postDescription: PropTypes.string,
+  postBanner: PropTypes.string,
+  pagePath: PropTypes.string,
+  article: PropTypes.bool,
+  blog: PropTypes.bool,
+};
+
+SEO.defaultProps = {
+  postTitle: null,
+  postDescription: null,
+  postBanner: null,
+  pagePath: null,
+  article: false,
+  blog: false,
+};

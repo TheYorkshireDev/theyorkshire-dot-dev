@@ -106,13 +106,13 @@ const BlogPageTemplate = ({ data }) => {
         <PostSection itemScope itemType="http://schema.org/Blog">
           {edges.map(({ node }) => {
             const { id, excerpt, frontmatter } = node;
-            const { title, tags, path, date, cover } = frontmatter;
+            const { title, tags, slug, date, cover } = frontmatter;
             return (
               <PostList
                 key={id}
                 title={title}
                 tags={tags}
-                path={path}
+                slug={slug}
                 date={date}
                 cover={cover.childImageSharp.fluid}
                 excerpt={excerpt}
@@ -167,7 +167,7 @@ BlogPageTemplate.propTypes = {
             frontmatter: PropTypes.shape({
               title: PropTypes.string.isRequired,
               tags: PropTypes.array,
-              path: PropTypes.string.isRequired,
+              slug: PropTypes.string.isRequired,
               date: PropTypes.string.isRequired,
               cover: PropTypes.object.isRequired,
             }),
@@ -200,7 +200,7 @@ export const query = graphql`
           excerpt(pruneLength: 75)
           frontmatter {
             title
-            path
+            slug
             tags
             date(formatString: "D MMMM YYYY")
             cover {

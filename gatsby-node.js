@@ -1,5 +1,5 @@
 const path = require('path');
-const { formatTagSlug } = require(path.resolve('src/util/utils'));
+const { formatPostPath, formatTagSlug } = require(path.resolve('src/util/utils'));
 
 const excludePage = (path) => {
   if (
@@ -28,6 +28,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogLists = path.resolve('src/templates/blog-list.jsx');
+    const postTemplate = path.resolve('src/templates/blog-post.jsx');
     const tagPosts = path.resolve('src/templates/tag.jsx');
 
     resolve(
@@ -40,7 +41,7 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   frontmatter {
-                    path
+                    slug
                     title
                     tags
                   }
@@ -114,6 +115,26 @@ exports.createPages = ({ graphql, actions }) => {
                   currentPage: i + 1,
                 },
               });
+            });
+          });
+        }
+
+        // Create blog post pages
+        if (!excludePage('/blog/')) {
+          posts.forEach(({ node }, index) => {
+            const slug = node.frontmatter.slug;
+            const path = formatPostPath(slug);
+            const prev = index === 0 ? null : posts[index - 1].node;
+            const next =
+              index === posts.length - 1 ? null : posts[index + 1].node;
+            createPage({
+              path,
+              component: postTemplate,
+              context: {
+                postSlug: slug,
+                prev,
+                next,
+              },
             });
           });
         }

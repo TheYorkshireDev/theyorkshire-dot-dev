@@ -96,7 +96,7 @@ const Excerpt = styled.p`
   margin: 0;
 `;
 
-const PostList = ({ path, cover, title, date, excerpt, tags }) => (
+const PostList = ({ slug, cover, title, date, excerpt, tags }) => (
   <Post>
     <Image>
       <Img fluid={cover} />
@@ -135,7 +135,7 @@ export default PostList;
 
 PostList.propTypes = {
   cover: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   excerpt: PropTypes.string,
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
