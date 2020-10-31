@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
@@ -21,8 +20,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const PostURL = config.siteUrl + '/blog/' + slug;
 
   return (
-    <BlogContentLayout>
-      <Helmet title={`${title} | Steven Cooney (TheYorkshireDev)`} />
+    <BlogContentLayout title={title}>
       <SEO
         postTitle={title}
         postDescription={description || excerpt || ' '}

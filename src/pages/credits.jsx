@@ -1,13 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 import MainContentLayout from '../layouts/Main';
 import UpperH1 from '../components/UpperH1';
 import UpperH2 from '../components/UpperH2';
 
 const CreditsPage = () => (
-  <MainContentLayout>
-    <Helmet title={'Credits | Steven Cooney (TheYorkshireDev)'} />
+  <MainContentLayout title="Credits">
     <UpperH1>Credits</UpperH1>
 
     <UpperH2>Inspired By</UpperH2>

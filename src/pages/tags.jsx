@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -50,8 +49,7 @@ const TagsPage = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <BlogContentLayout>
-      <Helmet title={'Tags | Steven Cooney (TheYorkshireDev)'} />
+    <BlogContentLayout title="Tags">
       <UpperH1>Tags</UpperH1>
 
       <AllPostsButton>

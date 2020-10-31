@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import BaseLayout from './Base';
 import SEO from '../components/SEO';
 
-const BlogContentLayout = ({ children }) => (
-  <BaseLayout>
+const BlogContentLayout = ({ children, title }) => (
+  <BaseLayout title={title}>
     <SEO />
     {children}
   </BaseLayout>
@@ -13,6 +13,7 @@ const BlogContentLayout = ({ children }) => (
 
 BlogContentLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  title: PropTypes.string,
 };
 
 export default BlogContentLayout;

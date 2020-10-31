@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import BaseLayout from './Base';
 import SEO from '../components/SEO';
 
-const MainContentLayout = ({ children, isIndex }) => (
-  <BaseLayout isIndex={isIndex}>
+const MainContentLayout = ({ children, title, isIndex }) => (
+  <BaseLayout title={title} isIndex={isIndex}>
     <SEO />
     {children}
   </BaseLayout>
@@ -13,6 +13,7 @@ const MainContentLayout = ({ children, isIndex }) => (
 
 MainContentLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  title: PropTypes.string,
   isIndex: PropTypes.bool,
 };
 

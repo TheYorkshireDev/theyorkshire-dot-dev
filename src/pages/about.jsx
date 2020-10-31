@@ -1,13 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 import MainContentLayout from '../layouts/Main';
 import UpperH1 from '../components/UpperH1';
 import UpperH2 from '../components/UpperH2';
 
 const AboutPage = () => (
-  <MainContentLayout>
-    <Helmet title={'About Me | Steven Cooney (TheYorkshireDev)'} />
+  <MainContentLayout title="About Me">
     <UpperH1>About Me</UpperH1>
     <p>
       I&apos;m a Software Developer based in Leeds, UK. I hold a first-class

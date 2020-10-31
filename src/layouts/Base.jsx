@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -56,7 +57,7 @@ const PageContent = styled.section`
   }
 `;
 
-const BaseLayout = ({ children, isIndex }) => (
+const BaseLayout = ({ children, title, isIndex }) => (
   <StaticQuery
     query={graphql`
       query SiteQuery {
@@ -109,6 +110,7 @@ const BaseLayout = ({ children, isIndex }) => (
             `}
           />
           <FlexStructure {...(isIndex ? { homepage: true } : {})}>
+            <Helmet title={`${title} | Steven Cooney (TheYorkshireDev)`} />
             <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
             <PageContent {...(isIndex ? { homepage: true } : {})}>
               {children}
@@ -123,6 +125,7 @@ const BaseLayout = ({ children, isIndex }) => (
 
 BaseLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  title: PropTypes.string,
   isIndex: PropTypes.bool,
 };
 

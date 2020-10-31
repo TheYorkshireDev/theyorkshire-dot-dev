@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
 import HomepageLayout from '../layouts/Home';
@@ -41,7 +40,6 @@ const TwitterLink = styled.a`
 
 const IndexPage = () => (
   <HomepageLayout>
-    <Helmet title={'Steven Cooney (TheYorkshireDev) | Software Developer'} />
     <HomepageContainer>
       <LogoContainer>
         <RoundLogo />

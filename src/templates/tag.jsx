@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -35,8 +34,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
   const { edges } = data.posts;
 
   return (
-    <BlogContentLayout>
-      <Helmet title={`${tag} | Steven Cooney (TheYorkshireDev)`} />
+    <BlogContentLayout title={tag}>
       <HeadingOne>{tag}</HeadingOne>
 
       <AllPostsButton>

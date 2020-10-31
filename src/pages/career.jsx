@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
 import MainContentLayout from '../layouts/Main';
@@ -50,8 +49,7 @@ const TwentyNineteenHeading = styled(TwentyNineteen)`
 `;
 
 const CareerPage = () => (
-  <MainContentLayout>
-    <Helmet title={'Career | Steven Cooney (TheYorkshireDev)'} />
+  <MainContentLayout title="Career">
     <UpperH1>Education &amp; Career</UpperH1>
     <p>
       Until university, I never wanted to be a software developer. I had no idea
