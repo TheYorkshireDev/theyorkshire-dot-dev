@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Layout from '../layouts/Layout';
+import BaseLayout from './Base';
 import SEO from '../components/SEO';
 
 const MainContentLayout = ({ children, isIndex }) => (
-  <Layout isIndex={isIndex}>
+  <BaseLayout isIndex={isIndex}>
     <SEO />
     {children}
-  </Layout>
+  </BaseLayout>
 );
 
 MainContentLayout.propTypes = {

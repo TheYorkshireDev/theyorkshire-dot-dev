@@ -56,7 +56,7 @@ const PageContent = styled.section`
   }
 `;
 
-const Layout = ({ children, isIndex }) => (
+const BaseLayout = ({ children, isIndex }) => (
   <StaticQuery
     query={graphql`
       query SiteQuery {
@@ -121,9 +121,9 @@ const Layout = ({ children, isIndex }) => (
   />
 );
 
-Layout.propTypes = {
+BaseLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
   isIndex: PropTypes.bool,
 };
 
-export default Layout;
+export default BaseLayout;

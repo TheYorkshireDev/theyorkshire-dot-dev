@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Layout from './Layout';
+import BaseLayout from './Base';
 import SEO from '../components/SEO';
 
 const BlogContentLayout = ({ children }) => (
-  <Layout>
+  <BaseLayout>
     <SEO />
     {children}
-  </Layout>
+  </BaseLayout>
 );
 
 BlogContentLayout.propTypes = {
