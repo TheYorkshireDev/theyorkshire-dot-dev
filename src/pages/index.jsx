@@ -1,7 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Layout from '../layouts/Layout';
 import styled from '@emotion/styled';
+
+import HomepageLayout from '../layouts/Home';
 import RoundLogo from '../../static/logo/logo.inline.svg';
 
 const HomepageContainer = styled.div`
@@ -39,7 +40,7 @@ const TwitterLink = styled.a`
 `;
 
 const IndexPage = () => (
-  <Layout isIndex={true}>
+  <HomepageLayout>
     <Helmet title={'Steven Cooney (TheYorkshireDev) | Software Developer'} />
     <HomepageContainer>
       <LogoContainer>
@@ -71,7 +72,7 @@ const IndexPage = () => (
         </p>
       </HomepageContent>
     </HomepageContainer>
-  </Layout>
+  </HomepageLayout>
 );
 
 export default IndexPage;
