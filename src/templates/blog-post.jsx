@@ -21,6 +21,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   return (
     <BlogContentLayout
       title={title}
+      postDescription={description || excerpt || ' '}
       postBanner={imagePath}
       pagePath={PostURL}
       article
