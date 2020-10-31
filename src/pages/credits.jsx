@@ -1,12 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import Layout from '../layouts/Layout';
+import MainContentLayout from '../layouts/Main';
 import UpperH1 from '../components/UpperH1';
 import UpperH2 from '../components/UpperH2';
 
 const CreditsPage = () => (
-  <Layout>
+  <MainContentLayout>
     <Helmet title={'Credits | Steven Cooney (TheYorkshireDev)'} />
     <UpperH1>Credits</UpperH1>
 
@@ -126,7 +126,7 @@ const CreditsPage = () => (
       </a>
       &nbsp;outlining a how to create a Gatsby site from scratch.
     </p>
-  </Layout>
+  </MainContentLayout>
 );
 
 export default CreditsPage;

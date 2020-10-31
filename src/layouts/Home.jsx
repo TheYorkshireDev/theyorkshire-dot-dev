@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Layout from '../layouts/Layout';
+import MainContentLayout from '../layouts/Main';
 
 const HomePageLayout = ({ children }) => (
-  <Layout isIndex={true}>{children}</Layout>
+  <MainContentLayout isIndex={true}>{children}</MainContentLayout>
 );
 
 HomePageLayout.propTypes = {

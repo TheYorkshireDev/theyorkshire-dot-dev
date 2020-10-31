@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { IconContext } from 'react-icons';
 import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 
-import Layout from '../layouts/Layout';
+import BlogContentLayout from '../layouts/Blog';
 import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
@@ -98,7 +98,7 @@ const BlogPageTemplate = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <Layout>
+    <BlogContentLayout>
       <Helmet title={'Blog | Steven Cooney (TheYorkshireDev)'} />
       <UpperH1>All Posts</UpperH1>
 
@@ -150,7 +150,7 @@ const BlogPageTemplate = ({ data }) => {
           </IconContext.Provider>
         </FilterToggle>
       </SplitContainer>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

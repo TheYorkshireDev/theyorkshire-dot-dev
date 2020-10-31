@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Layout from '../layouts/Layout';
+import BlogContentLayout from '../layouts/Blog';
 import PostList from '../components/PostList';
 
 const HeadingOne = styled.h1`
@@ -35,7 +35,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
   const { edges } = data.posts;
 
   return (
-    <Layout>
+    <BlogContentLayout>
       <Helmet title={`${tag} | Steven Cooney (TheYorkshireDev)`} />
       <HeadingOne>{tag}</HeadingOne>
 
@@ -58,7 +58,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
           />
         );
       })}
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

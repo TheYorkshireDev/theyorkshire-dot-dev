@@ -4,11 +4,11 @@ import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import SEO from '../components/SEO';
-import NavBar from '../components/NavBar';
+
 import Footer from '../components/Footer';
-import themeTemplate from '../../config/theme';
 import headroom from '../styles/headroom';
+import NavBar from '../components/NavBar';
+import themeTemplate from '../../config/theme';
 
 const FlexStructure = styled.div`
   display: flex;
@@ -109,7 +109,6 @@ const Layout = ({ children, isIndex }) => (
             `}
           />
           <FlexStructure {...(isIndex ? { homepage: true } : {})}>
-            <SEO />
             <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
             <PageContent {...(isIndex ? { homepage: true } : {})}>
               {children}

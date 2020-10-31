@@ -4,8 +4,8 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
+import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
-import Layout from '../layouts/Layout';
 import SEO from '../components/SEO';
 import PostHeader from '../components/PostHeader';
 
@@ -21,7 +21,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const PostURL = config.siteUrl + '/blog/' + slug;
 
   return (
-    <Layout>
+    <BlogContentLayout>
       <Helmet title={`${title} | Steven Cooney (TheYorkshireDev)`} />
       <SEO
         postTitle={title}
@@ -43,7 +43,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <meta itemProp="mainEntityOfPage" content={PostURL}></meta>
         <Content dangerouslySetInnerHTML={{ __html: html }} />
       </section>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

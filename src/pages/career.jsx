@@ -2,8 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
-import Layout from '../layouts/Layout';
-import UpperH1 from '../components/UpperH1';
+import MainContentLayout from '../layouts/Main';
 import TwentyTwelve from '../../static/twentytwelve-heading.inline.svg';
 import TwentyThirteen from '../../static/twentythirteen-heading.inline.svg';
 import TwentyFourteen from '../../static/twentyfourteen-heading.inline.svg';
@@ -12,6 +11,7 @@ import TwentySixteen from '../../static/twentysixteen-heading.inline.svg';
 import TwentySeventeen from '../../static/twentyseventeen-heading.inline.svg';
 import TwentyEighteen from '../../static/twentyeighteen-heading.inline.svg';
 import TwentyNineteen from '../../static/twentynineteen-heading.inline.svg';
+import UpperH1 from '../components/UpperH1';
 
 var MarginBottom = `
   margin-bottom: 0.75rem;
@@ -50,7 +50,7 @@ const TwentyNineteenHeading = styled(TwentyNineteen)`
 `;
 
 const CareerPage = () => (
-  <Layout>
+  <MainContentLayout>
     <Helmet title={'Career | Steven Cooney (TheYorkshireDev)'} />
     <UpperH1>Education &amp; Career</UpperH1>
     <p>
@@ -170,7 +170,7 @@ const CareerPage = () => (
       products from on-premise infrastructure to the cloud. The project used
       Terraform to provision cloud infrastructure on Azure.
     </p>
-  </Layout>
+  </MainContentLayout>
 );
 
 export default CareerPage;

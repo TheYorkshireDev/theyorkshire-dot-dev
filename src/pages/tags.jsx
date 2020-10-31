@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Layout from '../layouts/Layout';
+import BlogContentLayout from '../layouts/Blog';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
 
@@ -50,7 +50,7 @@ const TagsPage = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <Layout>
+    <BlogContentLayout>
       <Helmet title={'Tags | Steven Cooney (TheYorkshireDev)'} />
       <UpperH1>Tags</UpperH1>
 
@@ -68,7 +68,7 @@ const TagsPage = ({ data }) => {
             );
           })}
       </TagContainer>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 
