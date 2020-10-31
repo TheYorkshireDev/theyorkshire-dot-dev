@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
 

@@ -4,9 +4,9 @@ import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import SEO from './SEO';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import SEO from '../components/SEO';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import themeTemplate from '../../config/theme';
 import headroom from '../styles/headroom';
 

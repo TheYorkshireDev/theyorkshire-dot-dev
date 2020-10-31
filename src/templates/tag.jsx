@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import PostList from '../components/PostList';
 
 const HeadingOne = styled.h1`

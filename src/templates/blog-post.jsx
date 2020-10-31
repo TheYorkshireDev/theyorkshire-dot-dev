@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 import config from '../../config/site';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import SEO from '../components/SEO';
 import PostHeader from '../components/PostHeader';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import styled from '@emotion/styled';
 import RoundLogo from '../../static/logo/logo.inline.svg';
 

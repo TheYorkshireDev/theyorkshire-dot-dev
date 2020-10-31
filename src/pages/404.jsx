@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import UpperH1 from '../components/UpperH1';
 
 const ErrorPage = () => (

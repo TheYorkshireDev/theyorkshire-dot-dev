@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import UpperH1 from '../components/UpperH1';
 import TwentyTwelve from '../../static/twentytwelve-heading.inline.svg';
 import TwentyThirteen from '../../static/twentythirteen-heading.inline.svg';

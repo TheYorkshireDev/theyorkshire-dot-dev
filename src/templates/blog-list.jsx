@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { IconContext } from 'react-icons';
 import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
