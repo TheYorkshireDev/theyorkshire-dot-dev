@@ -1,13 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
-import Layout from '../components/Layout';
+import MainContentLayout from '../layouts/Main';
 import UpperH1 from '../components/UpperH1';
 import UpperH2 from '../components/UpperH2';
 
 const AboutPage = () => (
-  <Layout>
-    <Helmet title={'About Me | Steven Cooney (TheYorkshireDev)'} />
+  <MainContentLayout title="About Me">
     <UpperH1>About Me</UpperH1>
     <p>
       I&apos;m a Software Developer based in Leeds, UK. I hold a first-class
@@ -50,7 +48,7 @@ const AboutPage = () => (
       better than travelling to see the world. My recent trips include Japan,
       Malaysia, Paris and Chernobyl.
     </p>
-  </Layout>
+  </MainContentLayout>
 );
 
 export default AboutPage;

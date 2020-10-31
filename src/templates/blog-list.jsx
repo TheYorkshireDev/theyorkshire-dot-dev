@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { IconContext } from 'react-icons';
 import { FaFilter, FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 
-import Layout from '../components/Layout';
+import BlogContentLayout from '../layouts/Blog';
 import PostList from '../components/PostList';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
@@ -98,8 +97,7 @@ const BlogPageTemplate = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <Layout>
-      <Helmet title={'Blog | Steven Cooney (TheYorkshireDev)'} />
+    <BlogContentLayout title="Blog">
       <UpperH1>All Posts</UpperH1>
 
       <SplitContainer>
@@ -150,7 +148,7 @@ const BlogPageTemplate = ({ data }) => {
           </IconContext.Provider>
         </FilterToggle>
       </SplitContainer>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

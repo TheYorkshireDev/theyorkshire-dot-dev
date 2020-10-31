@@ -1,10 +1,9 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Layout from '../components/Layout';
+import BlogContentLayout from '../layouts/Blog';
 import UpperH1 from '../components/UpperH1';
 import { formatTagSlug, getTagCounts } from '../util/utils';
 
@@ -50,8 +49,7 @@ const TagsPage = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <Layout>
-      <Helmet title={'Tags | Steven Cooney (TheYorkshireDev)'} />
+    <BlogContentLayout title="Tags">
       <UpperH1>Tags</UpperH1>
 
       <AllPostsButton>
@@ -68,7 +66,7 @@ const TagsPage = ({ data }) => {
             );
           })}
       </TagContainer>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

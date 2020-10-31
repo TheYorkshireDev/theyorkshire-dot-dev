@@ -1,12 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
+import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
 import PostHeader from '../components/PostHeader';
 
 const Content = styled.article``;
@@ -21,15 +19,13 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const PostURL = config.siteUrl + '/blog/' + slug;
 
   return (
-    <Layout>
-      <Helmet title={`${title} | Steven Cooney (TheYorkshireDev)`} />
-      <SEO
-        postTitle={title}
-        postDescription={description || excerpt || ' '}
-        postBanner={imagePath}
-        pagePath={PostURL}
-        article
-      />
+    <BlogContentLayout
+      title={title}
+      postDescription={description || excerpt || ' '}
+      postBanner={imagePath}
+      pagePath={PostURL}
+      article
+    >
       <section itemScope itemType="http://schema.org/Article">
         <PostHeader
           title={title}
@@ -43,7 +39,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <meta itemProp="mainEntityOfPage" content={PostURL}></meta>
         <Content dangerouslySetInnerHTML={{ __html: html }} />
       </section>
-    </Layout>
+    </BlogContentLayout>
   );
 };
 

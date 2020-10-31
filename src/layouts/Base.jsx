@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import SEO from './SEO';
-import NavBar from './NavBar';
-import Footer from './Footer';
-import themeTemplate from '../../config/theme';
+
+import Footer from '../components/Footer';
 import headroom from '../styles/headroom';
+import NavBar from '../components/NavBar';
+import themeTemplate from '../../config/theme';
 
 const FlexStructure = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ const PageContent = styled.section`
   }
 `;
 
-const Layout = ({ children, isIndex }) => (
+const BaseLayout = ({ children, title, isIndex }) => (
   <StaticQuery
     query={graphql`
       query SiteQuery {
@@ -109,7 +110,7 @@ const Layout = ({ children, isIndex }) => (
             `}
           />
           <FlexStructure {...(isIndex ? { homepage: true } : {})}>
-            <SEO />
+            <Helmet title={`${title} | Steven Cooney (TheYorkshireDev)`} />
             <NavBar menuLinks={data.site.siteMetadata.menuLinks} />
             <PageContent {...(isIndex ? { homepage: true } : {})}>
               {children}
@@ -122,9 +123,10 @@ const Layout = ({ children, isIndex }) => (
   />
 );
 
-Layout.propTypes = {
+BaseLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  title: PropTypes.string,
   isIndex: PropTypes.bool,
 };
 
-export default Layout;
+export default BaseLayout;
