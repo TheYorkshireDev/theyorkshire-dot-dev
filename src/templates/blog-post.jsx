@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
-import SEO from '../components/SEO';
 import PostHeader from '../components/PostHeader';
 
 const Content = styled.article``;
@@ -20,14 +19,12 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const PostURL = config.siteUrl + '/blog/' + slug;
 
   return (
-    <BlogContentLayout title={title}>
-      <SEO
-        postTitle={title}
-        postDescription={description || excerpt || ' '}
-        postBanner={imagePath}
-        pagePath={PostURL}
-        article
-      />
+    <BlogContentLayout
+      title={title}
+      postBanner={imagePath}
+      pagePath={PostURL}
+      article
+    >
       <section itemScope itemType="http://schema.org/Article">
         <PostHeader
           title={title}
