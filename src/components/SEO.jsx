@@ -4,20 +4,12 @@ import PropTypes from 'prop-types';
 
 import config from '../../config/site';
 
-const SEO = ({
-  postTitle,
-  postDescription,
-  postBanner,
-  pagePath,
-  article,
-  blog,
-}) => {
-  // TODO: Override these if the page is a blog post
-  let title = postTitle || config.siteTitle;
-  let description = postDescription || config.siteDescription;
+const SEO = ({ title, description, banner, pagePath, article, blog }) => {
+  let seoTitle = title || config.siteTitle;
+  let seoDescription = description || config.siteDescription;
   let defaultImage = config.siteBanner; // Default is the site banner
   let ogType = blog ? 'blog' : article ? 'article' : 'website';
-  let pageImagePath = `${config.siteUrl}${postBanner || defaultImage}`;
+  let pageImagePath = `${config.siteUrl}${banner || defaultImage}`;
   let seoUrl = `${pagePath || config.siteUrl}`;
 
   let schemaOrgJSONLD = [
@@ -26,7 +18,7 @@ const SEO = ({
       '@type': 'WebSite',
       '@id': config.siteUrl,
       url: config.siteUrl,
-      name: title,
+      name: seoTitle,
     },
   ];
 
@@ -37,13 +29,13 @@ const SEO = ({
         '@type': 'BlogPosting',
         '@id': seoUrl,
         url: seoUrl,
-        name: title,
-        headline: title,
+        name: seoTitle,
+        headline: seoTitle,
         image: {
           '@type': 'ImageObject',
           url: pageImagePath,
         },
-        description: description,
+        description: seoDescription,
         author: {
           '@type': 'Person',
           name: config.author,
@@ -73,7 +65,7 @@ const SEO = ({
     <Helmet>
       <html lang={config.siteLanguage} />
       <meta name="author" content={config.author} />
-      <meta name="description" content={description} />
+      <meta name="description" content={seoDescription} />
       <meta name="image" content={pageImagePath} />
       <meta name="apple-mobile-web-app-title" content={config.siteShortName} />
       <meta name="application-name" content={config.siteShortName} />
@@ -84,19 +76,19 @@ const SEO = ({
       </script>
 
       {/* OpenGraph  */}
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={seoTitle} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={seoUrl} />
       <meta property="og:image" content={pageImagePath} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={seoDescription} />
       <meta property="og:site_name" content={config.siteShortName} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={config.twitterHandle} />
       <meta name="twitter:site" content={config.twitterHandle} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={seoTitle} />
+      <meta name="twitter:description" content={seoDescription} />
       <meta name="twitter:image" content={pageImagePath} />
     </Helmet>
   );
@@ -105,18 +97,18 @@ const SEO = ({
 export default SEO;
 
 SEO.propTypes = {
-  postTitle: PropTypes.string,
-  postDescription: PropTypes.string,
-  postBanner: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  banner: PropTypes.string,
   pagePath: PropTypes.string,
   article: PropTypes.bool,
   blog: PropTypes.bool,
 };
 
 SEO.defaultProps = {
-  postTitle: null,
-  postDescription: null,
-  postBanner: null,
+  title: null,
+  description: null,
+  banner: null,
   pagePath: null,
   article: false,
   blog: false,

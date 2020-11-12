@@ -34,7 +34,12 @@ const TagPageTemplate = ({ data, pageContext }) => {
   const { edges } = data.posts;
 
   return (
-    <BlogContentLayout title={tag}>
+    <BlogContentLayout
+      pageTitle={tag}
+      seoTitle={`Posts about ${tag}`}
+      seoDescription={`${tag} related blog posts covered by TheYorkshireDev`}
+      blog
+    >
       <HeadingOne>{tag}</HeadingOne>
 
       <AllPostsButton>

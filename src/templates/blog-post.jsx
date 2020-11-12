@@ -13,16 +13,17 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
   const { html, frontmatter, excerpt, wordCount } = data.markdownRemark;
   const { date, published, title, description, tags, slug } = frontmatter;
-  const imagePath = frontmatter.cover.childImageSharp.sizes.src;
+  const imagePath = frontmatter.cover.childImageSharp.resize.src;
   const image = frontmatter.cover.childImageSharp.fluid;
 
   const PostURL = config.siteUrl + '/blog/' + slug;
 
   return (
     <BlogContentLayout
-      title={title}
-      postDescription={description || excerpt || ' '}
-      postBanner={imagePath}
+      pageTitle={title}
+      seoTitle={title}
+      seoDescription={description || excerpt || ' '}
+      seoBanner={imagePath}
       pagePath={PostURL}
       article
     >
@@ -69,7 +70,7 @@ export const query = graphql`
             fluid(maxWidth: 1920, quality: 90, traceSVG: { color: "#0B536A" }) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
-            resize(width: 1200, quality: 90) {
+            resize(width: 900, quality: 90) {
               src
             }
             sizes(maxWidth: 600) {

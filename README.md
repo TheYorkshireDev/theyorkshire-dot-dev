@@ -76,4 +76,8 @@ I have several variables setup in Azure DevOps:
 * `NETLIFY_SITE_ID`
 
 ## 📝 Planned Enhancements
-- [ ] Add blogging capability from a second repository
+- [ ] Add blogging capability
+- [ ] Pull blog post from a second repository
+- [ ] Move to using GitHub Workflows for CI/CD
+- [ ] Blog Pagination
+

@@ -49,7 +49,12 @@ const TagsPage = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <BlogContentLayout title="Tags">
+    <BlogContentLayout
+      pageTitle="Tags"
+      seoTitle="Tags"
+      seoDescription="List of tags/categories covered in blog posts by TheYorkshireDev"
+      blog
+    >
       <UpperH1>Tags</UpperH1>
 
       <AllPostsButton>

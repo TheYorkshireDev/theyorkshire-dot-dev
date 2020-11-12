@@ -97,7 +97,12 @@ const BlogPageTemplate = ({ data }) => {
   const tags = getTagCounts(postTags);
 
   return (
-    <BlogContentLayout title="Blog">
+    <BlogContentLayout
+      pageTitle="All Posts"
+      seoTitle="A blog by TheYorkshireDev"
+      seoDescription="Latest blog posts by TheYorkshireDev"
+      blog
+    >
       <UpperH1>All Posts</UpperH1>
 
       <SplitContainer>

@@ -6,19 +6,22 @@ import SEO from '../components/SEO';
 
 const BlogContentLayout = ({
   children,
-  title,
-  postDescription,
-  postBanner,
+  pageTitle,
+  seoTitle,
+  seoDescription,
+  seoBanner,
   pagePath,
   article,
+  blog,
 }) => (
-  <BaseLayout title={title}>
+  <BaseLayout title={pageTitle}>
     <SEO
-      postTitle={title}
-      postDescription={postDescription}
-      postBanner={postBanner}
+      title={seoTitle}
+      description={seoDescription}
+      banner={seoBanner}
       pagePath={pagePath}
       article={article}
+      blog={blog}
     />
     {children}
   </BaseLayout>
@@ -26,11 +29,13 @@ const BlogContentLayout = ({
 
 BlogContentLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
-  title: PropTypes.string,
-  postDescription: PropTypes.string,
-  postBanner: PropTypes.string,
+  pageTitle: PropTypes.string,
+  seoTitle: PropTypes.string,
+  seoDescription: PropTypes.string,
+  seoBanner: PropTypes.string,
   pagePath: PropTypes.string,
   article: PropTypes.bool,
+  blog: PropTypes.bool,
 };
 
 export default BlogContentLayout;
