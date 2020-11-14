@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
 import { IconContext } from 'react-icons';
 import { FaRegCalendar, FaTags } from 'react-icons/fa';
@@ -13,6 +14,7 @@ const Post = styled.article`
 
   @media (min-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
     display: flex;
+    cursor: pointer;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -97,7 +99,7 @@ const Excerpt = styled.p`
 `;
 
 const PostList = ({ slug, featuredImage, title, date, excerpt, tags }) => (
-  <Post>
+  <Post onClick={() => navigate(`/blog/${slug}`)}>
     <Image>
       <Img fluid={featuredImage} />
     </Image>
