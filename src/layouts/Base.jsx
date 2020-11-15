@@ -34,9 +34,6 @@ const PageContent = styled.section`
   a {
     text-decoration: underline;
   }
-  a:hover {
-    font-weight: bold;
-  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
     width: 90%;
@@ -50,6 +47,13 @@ const PageContent = styled.section`
 
   @media (min-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
     width: 80%;
+
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xlAndUp}) {

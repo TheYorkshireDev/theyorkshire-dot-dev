@@ -7,14 +7,58 @@ import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
 import PostHeader from '../components/PostHeader';
 
-const Content = styled.article``;
+const Content = styled.article`
+  // HEADINGS
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 1em;
+    border-top: 1px solid ${(props) => props.theme.colors.grey};
+  }
+
+  // Make sure header link sits next to header
+  a.anchor {
+    color: inherit;
+    fill: var(
+      --theme-ui-colors-link-color,
+      ${(props) => props.theme.colors.primary}
+    );
+
+    // Rare exception that we only want the property to
+    // exist and be set for small screens
+    @media (max-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
+      svg {
+        visibility: visible;
+      }
+    }
+  }
+
+  // LISTS
+  li {
+    margin-bottom: 0;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    ul,
+    ol {
+      margin-top: 0;
+    }
+  }
+`;
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
   const { html, frontmatter, excerpt, wordCount } = data.markdownRemark;
   const { date, published, title, description, tags, slug } = frontmatter;
-  const imagePath = frontmatter.cover.childImageSharp.resize.src;
-  const image = frontmatter.cover.childImageSharp.fluid;
+  const imagePath = frontmatter.featuredImage.childImageSharp.resize.src;
+  const image = frontmatter.featuredImage.childImageSharp.fluid;
 
   const PostURL = config.siteUrl + '/blog/' + slug;
 
@@ -65,7 +109,7 @@ export const query = graphql`
         description
         tags
         slug
-        cover {
+        featuredImage {
           childImageSharp {
             fluid(maxWidth: 1920, quality: 90, traceSVG: { color: "#0B536A" }) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG

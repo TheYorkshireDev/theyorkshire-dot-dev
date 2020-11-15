@@ -96,10 +96,10 @@ const Excerpt = styled.p`
   margin: 0;
 `;
 
-const PostList = ({ slug, cover, title, date, excerpt, tags }) => (
+const PostList = ({ slug, featuredImage, title, date, excerpt, tags }) => (
   <Post>
     <Image>
-      <Img fluid={cover} />
+      <Img fluid={featuredImage} />
     </Image>
     <Details>
       <Title itemProp="name headline">{title}</Title>
@@ -134,7 +134,7 @@ const PostList = ({ slug, cover, title, date, excerpt, tags }) => (
 export default PostList;
 
 PostList.propTypes = {
-  cover: PropTypes.object.isRequired,
+  featuredImage: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   excerpt: PropTypes.string,
   date: PropTypes.string.isRequired,

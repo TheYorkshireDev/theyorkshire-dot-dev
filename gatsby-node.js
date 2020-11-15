@@ -1,5 +1,7 @@
 const path = require('path');
-const { formatPostPath, formatTagSlug } = require(path.resolve('src/util/utils'));
+const { formatPostPath, formatTagSlug } = require(path.resolve(
+  'src/util/utils'
+));
 
 const excludePage = (path) => {
   if (

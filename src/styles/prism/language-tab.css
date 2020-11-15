@@ -1,0 +1,47 @@
+.gatsby-highlight {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gatsby-highlight::before {
+  /* Tab Formatting */
+  border-radius: 0 0 0.25rem 0.25rem;
+  font-size: 12px;
+  left: 10px;
+  letter-spacing: 0.025rem;
+  padding: 0.1rem 0.5rem;
+  position: absolute;
+  text-align: right;
+  text-transform: uppercase;
+  top: 0;
+
+  /* Default Style */
+  background: black;
+  color: white;
+}
+
+/* Language Styles */
+
+[data-language="javascript"]::before {
+  content: "js";
+  background: #f7df1e;
+  color: black;
+}
+
+[data-language="shell"]::before {
+  content: "bash";
+  background: white;
+  color: black;
+}
+
+[data-language="css"]::before {
+  content: "css";
+  background: #ff9800;
+  color: white;
+}
+
+[data-language="cs"]::before {
+  content: "cs";
+  background: purple;
+  color: white;
+}
