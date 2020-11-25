@@ -23,7 +23,7 @@ In all honesty, I have been working on and off at building this site for over a 
 
 Due to work commitments, it took me much longer than I wanted. The last nine months have been chaos with the pandemic as we are involved in the national NHS covid effort, so at the end of the day, I just wanted to log off my PC, kick back and relax.
 
-Last year, I was fortunate to see a couple of talks from [Phil Hawksworth][2] who, works at Netlify and is a big advocate for JAMStack. I liked what I saw and decided that I should refresh my website. I also had a few other motives;
+Last year, I was fortunate to see a couple of talks from [Phil Hawksworth][2] who works at Netlify and is a big advocate for JAMStack. I liked what I saw and decided that I should refresh my website. I also had a few other motives;
 
 -   I had some TheYorkshireDev logos a friend designed for me a few years back I wanted to incorporate on my website
 -   I needed to get rid of the orange and grey and use a constant, clean colour scheme that links with my logos
