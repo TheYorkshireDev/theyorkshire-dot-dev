@@ -6,6 +6,8 @@ export const colors = {
   grey: '#e4e4e4',
   twitter: '#00acee',
   linkedIn: '#0e76a8',
+  facebook: '#3b5998',
+  email: '#ffa500',
 };
 
 export const shadow = {

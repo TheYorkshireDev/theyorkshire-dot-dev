@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
 import PostHeader from '../components/PostHeader';
+import Share from '../components/Share';
 
 const Content = styled.article`
   // HEADINGS
@@ -53,6 +54,19 @@ const Content = styled.article`
   }
 `;
 
+const SharePost = styled.div`
+  text-align: center;
+  margin-bottom: 1rem;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    font-size: 30px;
+  }
+`;
+
 const BlogPostTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
   const { html, frontmatter, excerpt, wordCount } = data.markdownRemark;
@@ -80,9 +94,20 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           tags={tags}
           wordCount={wordCount.words}
           image={image}
+          url={PostURL}
         />
         <meta itemProp="mainEntityOfPage" content={PostURL}></meta>
         <Content dangerouslySetInnerHTML={{ __html: html }} />
+
+        <hr />
+
+        <SharePost>
+          <p>
+            If you enjoyed this article, share it with your friends and
+            colleagues!
+          </p>
+          <Share title={title} url={PostURL} tags={tags} />
+        </SharePost>
       </section>
     </BlogContentLayout>
   );

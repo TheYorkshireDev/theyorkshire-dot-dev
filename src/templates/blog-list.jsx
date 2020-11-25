@@ -57,6 +57,10 @@ const TagBtn = styled.div`
     text-decoration: none;
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   :hover {
     border: solid 1px ${(props) => props.theme.colors.primary};
   }

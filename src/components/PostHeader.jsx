@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
 import UpperH1 from '../components/UpperH1';
+import Share from '../components/Share';
 
 const Header = styled.header`
   h1 {
@@ -21,11 +22,16 @@ const PostInformation = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 
   @media (min-width: ${(props) => props.theme.breakpoints.smallAndUp}) {
     flex-direction: row;
   }
+`;
+
+const SharePost = styled.div`
+  text-align: center;
+  margin-bottom: 1rem;
 `;
 
 const PostHeader = ({
@@ -36,6 +42,7 @@ const PostHeader = ({
   tags,
   wordCount,
   image,
+  url,
 }) => {
   const author = 'Steven Cooney';
 
@@ -64,6 +71,9 @@ const PostHeader = ({
           <meta itemProp="name" content="TheYorkshireDev"></meta>
         </div>
       </PostInformation>
+      <SharePost>
+        Share via: <Share title={title} url={url} tags={tags} />
+      </SharePost>
       <Img fluid={image} />
     </Header>
   );
@@ -79,4 +89,5 @@ PostHeader.propTypes = {
   tags: PropTypes.array.isRequired,
   wordCount: PropTypes.number,
   image: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
 };
