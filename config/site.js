@@ -15,7 +15,7 @@ module.exports = {
   // Manifest
   author: 'Steven Cooney', // Author for schemaORGJSONLD
   appShortName: 'TYD Blog',
-  appStartUrl: '/',
+  appStartUrl: '/blog',
   themeColor: '#0b536a', // Also update primary in theme.js
 
   menuLinks: [
@@ -30,6 +30,10 @@ module.exports = {
     {
       name: 'career',
       path: '/career',
+    },
+    {
+      name: 'blog',
+      path: '/blog',
     },
   ],
 };
