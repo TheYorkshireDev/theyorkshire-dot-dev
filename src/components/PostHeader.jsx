@@ -72,7 +72,7 @@ const PostHeader = ({
         </div>
       </PostInformation>
       <SharePost>
-        Share via: <Share title={title} url={url} tags={tags} />
+        Share on: <Share title={title} url={url} tags={tags} />
       </SharePost>
       <Img fluid={image} />
     </Header>

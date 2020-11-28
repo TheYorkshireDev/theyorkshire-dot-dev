@@ -76,8 +76,11 @@ I have several variables setup in Azure DevOps:
 * `NETLIFY_SITE_ID`
 
 ## 📝 Planned Enhancements
-- [ ] Add blogging capability
-- [ ] Pull blog post from a second repository
-- [ ] Move to using GitHub Workflows for CI/CD
+- [ ] Pull blog posts into a second repository
+- [ ] Blog post comments
 - [ ] Blog Pagination
-
+- [ ] Blog PWA Notifications
+- [ ] Ability to subscribe to the blog
+- [ ] Switch CI/CD to GitHub Workflows
+- [ ] Configure the website to use CSP and other HTTP headers
+- [ ] Update staging site to use either Netlify or Azure Static Web Apps
