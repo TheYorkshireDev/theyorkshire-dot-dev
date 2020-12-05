@@ -151,22 +151,27 @@ const CareerPage = () => (
     <TwentyNineteenHeading alt="2019" />
 
     <p>
-      I created a plugin that integrated our development and build tools. The
-      plugin sends the TeamCity build status to Phabricator code reviews. It was
-      shortlisted for the TeamCity Plugin awards 2019.
+      I created a plugin that integrated X-Lab&apos;s development and CI tools.
+      The plugin sends the TeamCity build status to Phabricator code reviews. I
+      also built a custom plugin that sent SonarQube analysis results to
+      Phabricator decorating code reviews with inline comments of the linting
+      suggestions SonarQube raised. The TeamCity Plugin awards 2019 shortlisted
+      my Teamcity &amp; Phabricator plugin.
     </p>
 
     <p>
-      During the year, I coordinated the recruitment for software development
-      positions X-Lab. I worked closely with universities, organising
-      recruitment presentations and attendance at career fairs.
+      Away from my technical responsibilities, I coordinated the recruitment for
+      several positions X-Lab. I worked closely with universities, organising
+      recruitment presentations and attending career fairs in a drive to expand
+      our team.
     </p>
 
     <p>
-      In 2019 I spent most of the year working with Infrastructure as Code and
-      DevOps tooling. I led a project to design, plan and execute a move of our
-      products from on-premise infrastructure to the cloud. The project used
-      Terraform to provision cloud infrastructure on Azure.
+      In the latter half of 2019, I spent most of the year working with
+      Infrastructure as Code and DevOps tooling. I led a proof of concept
+      project to explore the transition of moving our products from on-premise
+      infrastructure to the cloud. The project used Terraform to provision cloud
+      infrastructure on Azure.
     </p>
   </MainContentLayout>
 );
