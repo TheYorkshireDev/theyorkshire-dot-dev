@@ -45,3 +45,15 @@
   background: purple;
   color: white;
 }
+
+[data-language="powershell"]::before {
+  content: "Powershell";
+  background: blue;
+  color: white;
+}
+
+[data-language="azurecli"]::before {
+  content: "Azure CLI";
+  background: grey;
+  color: white;
+}

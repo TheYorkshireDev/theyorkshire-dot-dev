@@ -94,6 +94,13 @@ module.exports = {
                     },
                   },
                 },
+                {
+                  language: 'azurecli',
+                  extend: 'powershell',
+                  definition: {
+                    azurecli_types: /(SuperType)/,
+                  },
+                },
               ],
               // Customize the prompt used in shell output
               // Values below are default
