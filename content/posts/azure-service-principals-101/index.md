@@ -3,18 +3,17 @@ slug: "azure-service-principals-101"
 date: "2021-01-04"
 title: "Azure Service Principals 101"
 featuredImage: "./images/featured.jpg"
-description: "Azure Service Principals and some of the useful commands used to
-manage them?"
+description: "Azure Service Principals and some of the useful commands used to manage them?"
 tags: ["Azure", "AzureCLI"]
 ---
 
-I was recently talking to a colleague who was starting with Azure for the first time. When interacting with Azure programmatically, you soon stumble across service principals. However, for someone new to Azure what are Service Principals and some of the useful commands used to manage them?
+I was recently talking to a colleague who was starting with Azure for the first time, we were discussing authentication methods, especially when using external tools. When interacting with Azure programmatically, you soon stumble across service principals, however, for someone new to Azure what are Service Principals and some of the useful commands used to manage them?
 
 **NOTE:** for the snippets below, I am assuming that you have a single Azure Tenant and it has the default name of "Default Directory".
 
 ## What is a Service Principal?
 
-Azure uses Active Directory (AD) to manage user and other access to Azure services and resources. When a user logs onto Azure, they have a User identity object within AD that has associated permissions and roles dictating their access within Azure.
+Azure uses Active Directory (AD) to manage users and other access to Azure services and resources. When a user logs onto Azure, they have a User identity object within AD that has associated permissions and roles dictating their access within Azure.
 
 Often there are requirements to have programmatic access to Azure resources and services. One example may be automated tools within CI/CD to deploy an application or access Azure services. Rather than creating a "dummy/fake" user identity within AD, we create a Service Principal.
 
@@ -32,7 +31,7 @@ az ad sp list --filter "publisherName eq 'Default Directory'"
 
 When creating a service principal, you should specify a name for easier management in the future. You should also only give it the minimum roles and scopes required to undertake the desired action.
 
-**NOTE:** service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `.›--years` property.
+**NOTE:** service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `--years` property.
 
 ```azurecli
 az ad sp create-for-rbac -n "MyAwesomeApp" --role Reader --scopes /subscriptions/{SubID}/resourceGroups/{ResourceGroup1} /subscriptions/{SubID}/resourceGroups/{ResourceGroup2}
