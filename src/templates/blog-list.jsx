@@ -113,7 +113,14 @@ const BlogPageTemplate = ({ data }) => {
         <PostSection itemScope itemType="http://schema.org/Blog">
           {edges.map(({ node }) => {
             const { id, excerpt, frontmatter } = node;
-            const { title, tags, slug, date, featuredImage } = frontmatter;
+            const {
+              title,
+              description,
+              tags,
+              slug,
+              date,
+              featuredImage,
+            } = frontmatter;
             return (
               <PostList
                 key={id}
@@ -122,7 +129,7 @@ const BlogPageTemplate = ({ data }) => {
                 slug={slug}
                 date={date}
                 featuredImage={featuredImage.childImageSharp.fluid}
-                excerpt={excerpt}
+                excerpt={description || excerpt}
               />
             );
           })}
@@ -173,6 +180,7 @@ BlogPageTemplate.propTypes = {
             excerpt: PropTypes.string,
             frontmatter: PropTypes.shape({
               title: PropTypes.string.isRequired,
+              description: PropTypes.string.isRequired,
               tags: PropTypes.array,
               slug: PropTypes.string.isRequired,
               date: PropTypes.string.isRequired,
@@ -196,7 +204,7 @@ BlogPageTemplate.propTypes = {
 
 export const query = graphql`
   query blogListQuery($skip: Int!, $limit: Int!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
@@ -207,6 +215,7 @@ export const query = graphql`
           excerpt(pruneLength: 75)
           frontmatter {
             title
+            description
             slug
             tags
             date(formatString: "D MMMM YYYY")
@@ -225,7 +234,7 @@ export const query = graphql`
         }
       }
     }
-    allTags: allMarkdownRemark {
+    allTags: allMdx {
       nodes {
         frontmatter {
           tags

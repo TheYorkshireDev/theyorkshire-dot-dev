@@ -93,7 +93,7 @@ TagsPage.propTypes = {
 
 export const query = graphql`
   query {
-    allTags: allMarkdownRemark {
+    allTags: allMdx {
       nodes {
         frontmatter {
           tags
