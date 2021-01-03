@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import BlogContentLayout from '../layouts/Blog';
 import config from '../../config/site';
@@ -23,19 +24,13 @@ const Content = styled.article`
   }
 
   // Make sure header link sits next to header
-  a.anchor {
-    color: inherit;
-    fill: var(
-      --theme-ui-colors-link-color,
-      ${(props) => props.theme.colors.primary}
-    );
-
-    // Rare exception that we only want the property to
-    // exist and be set for small screens
-    @media (max-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
-      svg {
-        visibility: visible;
-      }
+  a.anchor.after {
+    padding-left: 4px;
+    svg {
+      fill: var(
+        --theme-ui-colors-link-color,
+        ${(props) => props.theme.colors.primary}
+      );
     }
   }
 
@@ -69,7 +64,7 @@ const SharePost = styled.div`
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
-  const { html, frontmatter, excerpt, wordCount } = data.markdownRemark;
+  const { body, frontmatter, excerpt, wordCount } = data.mdx;
   const { date, published, title, description, tags, slug } = frontmatter;
   const imagePath = frontmatter.featuredImage.childImageSharp.resize.src;
   const image = frontmatter.featuredImage.childImageSharp.fluid;
@@ -97,8 +92,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           url={PostURL}
         />
         <meta itemProp="mainEntityOfPage" content={PostURL}></meta>
-        <Content dangerouslySetInnerHTML={{ __html: html }} />
-
+        <Content>
+          <MDXRenderer>{body}</MDXRenderer>
+        </Content>
         <hr />
 
         <SharePost>
@@ -125,8 +121,8 @@ BlogPostTemplate.propTypes = {
 
 export const query = graphql`
   query($postSlug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $postSlug } }) {
-      html
+    mdx(frontmatter: { slug: { eq: $postSlug } }) {
+      body
       frontmatter {
         date
         published: date(formatString: "D MMMM YYYY")

@@ -196,7 +196,7 @@ BlogPageTemplate.propTypes = {
 
 export const query = graphql`
   query blogListQuery($skip: Int!, $limit: Int!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
@@ -225,7 +225,7 @@ export const query = graphql`
         }
       }
     }
-    allTags: allMarkdownRemark {
+    allTags: allMdx {
       nodes {
         frontmatter {
           tags

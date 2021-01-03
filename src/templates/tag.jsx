@@ -94,7 +94,7 @@ TagPageTemplate.propTypes = {
 
 export const query = graphql`
   query tagListQuery($tag: String!, $skip: Int!, $limit: Int!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: { frontmatter: { tags: { in: [$tag] } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit

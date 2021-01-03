@@ -33,14 +33,21 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
+        extensions: ['.md', '.mdx'],
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 800,
               quality: 90,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              isIconAfterHeader: true,
             },
           },
           {
@@ -113,12 +120,6 @@ module.exports = {
               // Add additional HTML escapes by providing a mapping
               // of HTML entities and their escape value IE: { '}': '&#123;' }
               escapeEntities: {},
-            },
-          },
-          {
-            resolve: 'gatsby-remark-autolink-headers',
-            options: {
-              isIconAfterHeader: true,
             },
           },
         ],
