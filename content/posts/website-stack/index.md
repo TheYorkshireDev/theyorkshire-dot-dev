@@ -3,7 +3,7 @@ slug: "website-stack"
 date: "2020-11-28"
 title: "Website & Blog Stack"
 featuredImage: "./images/featured.jpg"
-description: "An overview of my website tech stack."
+description: "Overview of my website technology stack and the journey from previous incarnations."
 tags: ["Blog", "Website"]
 ---
 
