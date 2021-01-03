@@ -3,7 +3,7 @@ slug: "azure-service-principals-101"
 date: "2021-01-04"
 title: "Azure Service Principals 101"
 featuredImage: "./images/featured.jpg"
-description: "Azure Service Principals and some of the useful commands used to manage them?"
+description: "Introduction to Azure Service Principals and some useful commands used to manage them."
 tags: ["Azure", "AzureCLI"]
 ---
 
