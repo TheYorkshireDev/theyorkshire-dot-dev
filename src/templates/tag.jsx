@@ -48,7 +48,14 @@ const TagPageTemplate = ({ data, pageContext }) => {
 
       {edges.map(({ node }) => {
         const { id, excerpt, frontmatter } = node;
-        const { title, tags, slug, date, featuredImage } = frontmatter;
+        const {
+          title,
+          description,
+          tags,
+          slug,
+          date,
+          featuredImage,
+        } = frontmatter;
         return (
           <PostList
             key={id}
@@ -57,7 +64,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
             slug={slug}
             date={date}
             featuredImage={featuredImage.childImageSharp.fluid}
-            excerpt={excerpt}
+            excerpt={description || excerpt}
           />
         );
       })}
@@ -77,6 +84,7 @@ TagPageTemplate.propTypes = {
             excerpt: PropTypes.string,
             frontmatter: PropTypes.shape({
               title: PropTypes.string.isRequired,
+              description: PropTypes.string.isRequired,
               tags: PropTypes.array,
               slug: PropTypes.string.isRequired,
               date: PropTypes.string.isRequired,
@@ -106,6 +114,7 @@ export const query = graphql`
           excerpt(pruneLength: 75)
           frontmatter {
             title
+            description
             slug
             tags
             date(formatString: "D MMMM YYYY")
