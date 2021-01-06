@@ -2,12 +2,16 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import BlogContentLayout from '../layouts/Blog';
+import Callout from '../components/Callout';
 import config from '../../config/site';
 import PostHeader from '../components/PostHeader';
 import Share from '../components/Share';
+
+const shortcodes = { Callout };
 
 const Content = styled.article`
   // HEADINGS
@@ -93,7 +97,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         />
         <meta itemProp="mainEntityOfPage" content={PostURL}></meta>
         <Content>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXProvider components={shortcodes}>
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
         </Content>
         <hr />
 
