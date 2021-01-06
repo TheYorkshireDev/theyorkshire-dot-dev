@@ -9,7 +9,9 @@ tags: ["Azure", "AzureCLI"]
 
 I was recently talking to a colleague who was starting with Azure for the first time, we were discussing authentication methods, especially when using external tools. When interacting with Azure programmatically, you soon stumble across service principals, however, for someone new to Azure what are Service Principals and some of the useful commands used to manage them?
 
-**NOTE:** for the snippets below, I am assuming that you have a single Azure Tenant and it has the default name of "Default Directory".
+<Callout>
+  for the snippets below, I am assuming that you have a single Azure Tenant and it has the default name of "Default Directory".
+</Callout>
 
 ## What is a Service Principal?
 
@@ -31,7 +33,9 @@ az ad sp list --filter "publisherName eq 'Default Directory'"
 
 When creating a service principal, you should specify a name for easier management in the future. You should also only give it the minimum roles and scopes required to undertake the desired action.
 
-**NOTE:** service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `--years` property.
+<Callout>
+  service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `--years` property.
+</Callout>
 
 ```azurecli
 az ad sp create-for-rbac -n "MyAwesomeApp" --role Reader --scopes /subscriptions/{SubID}/resourceGroups/{ResourceGroup1} /subscriptions/{SubID}/resourceGroups/{ResourceGroup2}
@@ -45,7 +49,9 @@ There is a quota limit on Service Principals within an Azure Tenant not to menti
 
 Below is a Powershell command to list all Service Principals that have expired. We first get a list of all Service Principals within our Tenant then loop over them checking the expiry date, only outputting those that have expired.
 
-**NOTE:** unlike other commands in this post this is a Powershell command, not Azure CLI, so if you are running Az CLI outside of Powershell you may want to use Azure's Cloud Shell to undertake this action.
+<Callout>
+  unlike other commands in this post this is a Powershell command, not Azure CLI, so if you are running Az CLI outside of Powershell you may want to use Azure's Cloud Shell to undertake this action.
+</Callout>
 
 ```powershell{numberLines: true}
 $spns = az ad sp list --filter "publisherName eq 'Default Directory'" | ConvertFrom-Json | Select appId, displayName | Sort-Object -Property displayName
@@ -58,7 +64,9 @@ foreach ($spn in $spns) {
 
 When Service Principals expire, they need to be renewed. Likewise, if the Service Principal secret is exposed, it must be regenerated. The command below resets the service principal generating a new secret key and expiry.
 
-**NOTE:** service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `--years` property.
+<Callout>
+  service principals have a default expiry of 1 year from creation. You can specify how many years before expiry by providing the `--years` property.
+</Callout>
 
 ```azurecli
 az ad sp credential reset --name "MyAwesomeApp"
@@ -72,7 +80,9 @@ Once you have no use for a Service Principal, you should delete it removing acce
 
 Below is a command to delete a Service Principal, all credentials, roles and scopes.
 
-**NOTE:** `--id` can take the Service Principal ID or name
+<Callout>
+  `--id` can take the Service Principal ID or name
+</Callout>
 
 ```azurecli
 az ad sp delete --id "MyAwesomeApp"
