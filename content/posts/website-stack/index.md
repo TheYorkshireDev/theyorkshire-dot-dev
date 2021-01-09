@@ -2,7 +2,8 @@
 slug: "website-stack"
 date: "2020-11-28"
 title: "Website & Blog Stack"
-featuredImage: "./images/featured.jpg"
+featuredImage: "./images/featured.png"
+thumbImage: "./images/thumb.png"
 description: "Overview of my website technology stack and the journey from previous incarnations."
 tags: ["Blog", "Website"]
 ---
@@ -65,8 +66,6 @@ There are a few additions I'd like to make to the website in future.
 <hr />
 
 What's your tech stack? Do you have any feedback? Reach out and let's discuss.
-
-If you enjoyed this article, share it with your friends and colleagues!
 
 [1]: https://theyorkshire.dev
 [2]: https://twitter.com/philhawksworth
