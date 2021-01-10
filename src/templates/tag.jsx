@@ -54,7 +54,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
           tags,
           slug,
           date,
-          featuredImage,
+          thumbImage,
         } = frontmatter;
         return (
           <PostList
@@ -63,7 +63,7 @@ const TagPageTemplate = ({ data, pageContext }) => {
             tags={tags}
             slug={slug}
             date={date}
-            featuredImage={featuredImage.childImageSharp.fluid}
+            thumbImage={thumbImage.childImageSharp.fluid}
             excerpt={description || excerpt}
           />
         );
@@ -88,7 +88,7 @@ TagPageTemplate.propTypes = {
               tags: PropTypes.array,
               slug: PropTypes.string.isRequired,
               date: PropTypes.string.isRequired,
-              featuredImage: PropTypes.object.isRequired,
+              thumbImage: PropTypes.object.isRequired,
             }),
           }),
         }).isRequired
@@ -118,10 +118,10 @@ export const query = graphql`
             slug
             tags
             date(formatString: "D MMMM YYYY")
-            featuredImage {
+            thumbImage {
               childImageSharp {
                 fluid(
-                  maxWidth: 1000
+                  maxWidth: 500
                   quality: 90
                   traceSVG: { color: "#0B536A" }
                 ) {

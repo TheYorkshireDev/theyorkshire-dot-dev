@@ -39,6 +39,8 @@ const Image = styled.div`
 `;
 
 const Details = styled.div`
+  width: 100%;
+
   @media (min-width: ${(props) => props.theme.breakpoints.largeAndUp}) {
     padding-left: 1rem;
   }
@@ -98,10 +100,10 @@ const Excerpt = styled.p`
   margin: 0;
 `;
 
-const PostList = ({ slug, featuredImage, title, date, excerpt, tags }) => (
+const PostList = ({ slug, thumbImage, title, date, excerpt, tags }) => (
   <Post onClick={() => navigate(`/blog/${slug}`)}>
     <Image>
-      <Img fluid={featuredImage} />
+      <Img fluid={thumbImage} />
     </Image>
     <Details>
       <Title itemProp="name headline">{title}</Title>
@@ -136,7 +138,7 @@ const PostList = ({ slug, featuredImage, title, date, excerpt, tags }) => (
 export default PostList;
 
 PostList.propTypes = {
-  featuredImage: PropTypes.object.isRequired,
+  thumbImage: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   excerpt: PropTypes.string,
   date: PropTypes.string.isRequired,
