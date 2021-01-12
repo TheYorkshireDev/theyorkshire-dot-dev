@@ -144,9 +144,6 @@ export const query = graphql`
             resize(width: 900, quality: 90) {
               src
             }
-            sizes(maxWidth: 600) {
-              ...GatsbyImageSharpSizes
-            }
           }
         }
       }
