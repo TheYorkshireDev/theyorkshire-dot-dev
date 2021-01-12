@@ -73,7 +73,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const imagePath = frontmatter.featuredImage.childImageSharp.resize.src;
   const image = frontmatter.featuredImage.childImageSharp.fluid;
 
-  const PostURL = config.siteUrl + '/blog/' + slug;
+  const PostURL = config.siteUrl + '/blog/' + slug + '/';
 
   return (
     <BlogContentLayout
