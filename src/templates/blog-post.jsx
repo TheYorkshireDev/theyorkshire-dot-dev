@@ -51,6 +51,13 @@ const Content = styled.article`
       margin-top: 0;
     }
   }
+
+  // CALLOUTS
+  aside {
+    p {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const SharePost = styled.div`

@@ -20,6 +20,10 @@
   color: white;
 }
 
+[data-language="text"] {
+  padding-top: 1em;
+}
+
 /* Language Styles */
 
 [data-language="javascript"]::before {
