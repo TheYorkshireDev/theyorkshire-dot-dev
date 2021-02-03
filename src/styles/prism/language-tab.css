@@ -61,3 +61,9 @@
   background: grey;
   color: white;
 }
+
+[data-language="shell"]::before {
+  content: "Shell";
+  background: black;
+  color: #66d9ef;
+}
