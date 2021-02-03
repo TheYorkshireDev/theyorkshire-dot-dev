@@ -84,5 +84,3 @@ I have several variables setup in Azure DevOps:
 - [ ] Switch CI/CD to GitHub Workflows
 - [ ] Configure the website to use CSP and other HTTP headers
 - [ ] Update staging site to use either Netlify or Azure Static Web Apps
-
-Trigger Build
