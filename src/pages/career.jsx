@@ -10,6 +10,7 @@ import TwentySixteen from '../../static/twentysixteen-heading.inline.svg';
 import TwentySeventeen from '../../static/twentyseventeen-heading.inline.svg';
 import TwentyEighteen from '../../static/twentyeighteen-heading.inline.svg';
 import TwentyNineteen from '../../static/twentynineteen-heading.inline.svg';
+import TwentyTwenty from '../../static/twentytwenty-heading.inline.svg';
 import UpperH1 from '../components/UpperH1';
 
 var MarginBottom = `
@@ -45,6 +46,10 @@ const TwentyEighteenHeading = styled(TwentyEighteen)`
 `;
 
 const TwentyNineteenHeading = styled(TwentyNineteen)`
+  ${MarginBottom}
+`;
+
+const TwentyTwentyHeading = styled(TwentyTwenty)`
   ${MarginBottom}
 `;
 
@@ -172,6 +177,36 @@ const CareerPage = () => (
       project to explore the transition of moving our products from on-premise
       infrastructure to the cloud. The project used Terraform to provision cloud
       infrastructure on Azure.
+    </p>
+
+    <TwentyTwentyHeading alt="2020" />
+
+    <p>
+      2020 was a hectic year. I started the year leading a team to architect,
+      plan and execute a move of NPEx to the cloud following on from a
+      successful proof of concept the year before. When the COVID-19 pandemic
+      struck, X-Lab paused the cloud migration to assist the NHS efforts
+      responding to the pandemic.
+    </p>
+
+    <p>
+      NPEx is used to speed up COVID-19 testing turn around times and assist in
+      COVID reporting to NHS organisations. For most of 2020, it was all hands
+      on deck at X-Lab supporting the national effort and the TTCE scheme.
+    </p>
+
+    <p>
+      In August, my team and I resumed our cloud migration project with the new
+      objective of getting a platform ready specifically for the NHS&apos;s
+      COVID-19 testing program. We launched the cloud pandemic platform in early
+      Q4.
+    </p>
+
+    <p>
+      Looking back now, it was a herculean effort by my colleagues, firstly in
+      response to the original outbreak and connecting up the remaining testing
+      laboratories on to the NPEx network. Moreover, we then transitioned to a
+      dedicated cloud-based pandemic COVID-19 platform on Azure.
     </p>
   </MainContentLayout>
 );
