@@ -9,9 +9,10 @@ import BlogContentLayout from '../layouts/Blog';
 import Callout from '../components/Callout';
 import config from '../../config/site';
 import PostHeader from '../components/PostHeader';
+import Preamble from '../components/Preamble';
 import Share from '../components/Share';
 
-const shortcodes = { Callout };
+const shortcodes = { Callout, Preamble };
 
 const Content = styled.article`
   // HEADINGS
@@ -50,6 +51,11 @@ const Content = styled.article`
     ol {
       margin-top: 0;
     }
+  }
+
+  // BEFORE CODE BLOCKS
+  div.gatsby-highlight + p {
+    margin-top: 1.58rem;
   }
 
   // CALLOUTS
