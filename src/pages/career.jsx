@@ -190,23 +190,34 @@ const CareerPage = () => (
     </p>
 
     <p>
-      NPEx is used to speed up COVID-19 testing turn around times and assist in
-      COVID reporting to NHS organisations. For most of 2020, it was all hands
-      on deck at X-Lab supporting the national effort and the TTCE scheme.
+      NHS England and NHSX mandated the use of NPEx for COVID-19 testing to
+      speed up COVID-19 testing turn around times and assist in COVID reporting
+      to NHS organisations. One of the first things I did during the early
+      stages of the pandemic was to work with NHS Trusts to onboard their
+      laboratories to NPEx building interfaces to consume their nuanced HL7
+      message formats.
+    </p>
+
+    <p>
+      During the summer, I worked with NHS Digital to connect NPEx to their
+      Personal Demographics Service to look up and verify up a patient&apos;s
+      NHS Number and retrieve their GP Practice enriching the result. The
+      enriched patient information allowed for downstream parties to update the
+      patient&apos;s GP records.
     </p>
 
     <p>
       In August, my team and I resumed our cloud migration project with the new
       objective of getting a platform ready specifically for the NHS&apos;s
-      COVID-19 testing program. We launched the cloud pandemic platform in early
-      Q4.
+      COVID-19 testing program. We launched the cloud pandemic platform in
+      October on Azure.
     </p>
 
     <p>
-      Looking back now, it was a herculean effort by my colleagues, firstly in
-      response to the original outbreak and connecting up the remaining testing
-      laboratories on to the NPEx network. Moreover, we then transitioned to a
-      dedicated cloud-based pandemic COVID-19 platform on Azure.
+      During the latter part of the year, I worked with my team on performance
+      and scaling improvements in conjunction with partnering NHS organisations
+      towards meeting the increased testing capacity outlined by the government
+      and NHS bodies.
     </p>
   </MainContentLayout>
 );
