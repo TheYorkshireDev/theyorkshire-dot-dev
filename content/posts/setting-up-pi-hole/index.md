@@ -26,24 +26,30 @@ During the install when specifying the disk to format the full disk was not sele
 
 ### Update the System
 
+<Preamble>
 After the initial installation, I updated everything before continuing any further.
+</Preamble>
 
-```bash
-sudo apt update && sudo apt upgrade -y
+```shell
+apt update && apt upgrade -y
 ```
 
 ### Install Postfix for Email
 
 To keep the server up to date unattended-upgrades are used. Reports from unattended-upgrades get emailed using Postfix.
 
+<Preamble>
 To install Postfix and initial config I ran the following:
+</Preamble>
 
-```bash
-sudo apt install postfix mailutils
-sudo cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
+```shell
+apt install postfix mailutils
+cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
 ```
 
+<Preamble>
 I used SendGrid as a relay host and followed their documentation for [configuring Postfix][2]. Below was the configuration I added to `/etc/postfix/main.cf`.
+</Preamble>
 
 ```
 smtp_sasl_auth_enable = yes
@@ -55,22 +61,29 @@ header_size_limit = 4096000
 relayhost = [smtp.sendgrid.net]:587
 ```
 
+<Preamble>
 To authenticate against Sendgrid using an API key, I created `/etc/postfix/sasl_passwd` to store the API key.
+</Preamble>
 
 ```
 [smtp.sendgrid.net]:587 apikey:<yourSendGridApiKey>
 ```
 
+<Preamble>
 Ensure the password file had the correct ownership and before restarting postfix.
+</Preamble>
 
-```bash
-sudo chmod 600 /etc/postfix/sasl\_passwd
-sudo postmap /etc/postfix/sasl\_passwd
-sudo systemctl restart postfix
+```shell
+chmod 600 /etc/postfix/sasl_passwd
+postmap /etc/postfix/sasl_passwd
+systemctl restart postfix
 ```
 
+<Preamble>
 Test Postfix by sending an email:
-```bash
+</Preamble>
+
+```shell
 echo "Just testing postfix" | mail -s "[Test Email]" test@example.com
 ```
 
@@ -78,15 +91,21 @@ echo "Just testing postfix" | mail -s "[Test Email]" test@example.com
 
 As mentioned before, to ensure the Ubuntu Server is always patched, I configured unattended-upgrades which installs updates without manual interaction.
 
+<Preamble>
 Install unattended-upgrades:
-```bash
+</Preamble>
+
+```shell
 apt-get install unattended-upgrades apt-listchanges
 ```
 
 #### Frequency Configuration
 
+<Preamble>
+
 The frequency of updates I used was based upon [this setup][3] which was suitable for my needs.
 Within `/etc/apt/apt.conf.d/20auto-upgrades` I set the following:
+</Preamble>
 
 ```
 APT::Periodic::Update-Package-Lists "1";
@@ -108,7 +127,10 @@ APT::Periodic::AutocleanInterval "9";
 
 In the unattended-upgrades configuration file, I set the `Unattended-Upgrade::Mail` property to my email address.
 
+<Preamble>
 I also set automatic reboot and the time to reboot too:
+</Preamble>
+
 ```
 Unattended-Upgrade::Automatic-Reboot "true";
 Unattended-Upgrade::Automatic-Reboot-Time "02:00";
@@ -122,21 +144,30 @@ The inspiration for setting up Pi-Hole came from reading a [blog post][4] by [Sc
 
 Cloudflared is used as a proxy to enable DNS over HTTPS. Pi-Hole has good [documentation for installing Cloudflared][6]. I installed cloudflared the "automatic" way outlined in the link above, below are the steps I undertook.
 
+<Preamble>
 Install Cloudflared:
-```bash
+</Preamble>
+
+```shell
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
-sudo apt-get install ./cloudflared-stable-linux-amd64.deb
+apt-get install ./cloudflared-stable-linux-amd64.deb
 cloudflared -v
 ```
 
+<Preamble>
 To configure cloudflared, I used a config file to specify the upstream DNS location DoH requests should be routed.
+</Preamble>
 
-```bash
+```shell
 mkdir /etc/cloudflared/
 vi /etc/cloudflared/config.yml
 ```
 
+<Preamble>
+
 `config.yml` file content points to CloudFlare's DNS servers.
+</Preamble>
+
 ```
 proxy-dns: true
 proxy-dns-port: 5053
@@ -144,23 +175,31 @@ proxy-dns-upstream:
   - https://1.1.1.1/dns-query
   - https://1.0.0.1/dns-query
 #Uncomment following if you want to also want to use IPv6 for external DOH lookups
-  #- https://\[2606:4700:4700::1111\]/dns-query
-  #- https://\[2606:4700:4700::1001\]/dns-query
+  #- https://[2606:4700:4700::1111]/dns-query
+  #- https://[2606:4700:4700::1001]/dns-query
 ```
 
 <Callout>
   The DNS proxy port is needed later on.
 </Callout>
 
+<Preamble>
+
 Once the config was in place, I installed cloudflared as a service:
-```bash
+</Preamble>
+
+```shell
 cloudflared service install --legacy
 systemctl start cloudflared
 systemctl status cloudflared
 ```
 
+<Preamble>
+
 To test DNS routed via cloudflared works you can run `dig`:
-```bash
+</Preamble>
+
+```shell
 dig @127.0.0.1 -p 5053 google.com
 ```
 
@@ -172,7 +211,7 @@ Installing Pi-Hole was trivial, I just ran the following command and proceeded t
   It did not matter the default DNS configuration I choose since I override the setting after installation.
 </Callout>
 
-```bash
+```shell
 curl -sSL https://install.pi-hole.net | bash
 ```
 
@@ -191,10 +230,13 @@ server=127.0.0.1#5053
 
 I also need to update `/etc/pihole/setupVars.conf` and comment out the `PIHOLE_DNS` entries, so Pi-Hole used the ones within `dnsmasq`.
 
+<Preamble>
 I then restarted the dnsmasq service to use the updated config.
-```bash
-sudo systemctl restart dnsmasq.service
-sudo systemctl status dnsmasq
+</Preamble>
+
+```shell
+systemctl restart dnsmasq.service
+systemctl status dnsmasq
 ```
 
 ### Configuring devices to use Pi-Hole
@@ -205,10 +247,12 @@ To enable all of my devices to utilise Pi-Hole, I chose to set the network DNS s
 
 A few resources that I used during my setup that may also be of use:
 
--   [Install outgoing email from Debian/Ubuntu system through SendGrid][7]
--   [Integrate Postfix with SendGrid][8]
--   [Debian Unattended Upgrades Docs][9]
--   [@roybotnik Unattended Upgrades Setup][10]
+- [Install outgoing email from Debian/Ubuntu system through SendGrid][7]
+- [Integrate Postfix with SendGrid][2]
+- [Debian Unattended Upgrades Docs][8]
+- [@roybotnik Unattended Upgrades Setup][9]
+- [Install Cloudflared][6]
+- [Install Pi-Hole][10]
 
 <hr />
 
@@ -221,6 +265,6 @@ Have you installed and configured Pi-Hole? Do you have any feedback? Reach out a
 [5]: https://twitter.com/Scott_Helme
 [6]: https://docs.pi-hole.net/guides/dns/cloudflared/
 [7]: https://gist.github.com/wnasich/71093e406c07ed3f03f63da8abd6ce97
-[8]: https://sendgrid.com/docs/for-developers/sending-email/postfix/
-[9]: https://wiki.debian.org/UnattendedUpgrades
-[10]: https://gist.github.com/roybotnik/b0ec2eda2bc625e19eaf#frequency-configuration
+[8]: https://wiki.debian.org/UnattendedUpgrades
+[9]: https://gist.github.com/roybotnik/b0ec2eda2bc625e19eaf
+[10]: https://docs.pi-hole.net/main/basic-install
