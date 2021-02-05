@@ -14,7 +14,7 @@ I've wanted to set up a Pi-hole on my home network for a while but never found t
 
 As touched upon already, I re-purposed an old 2012 Mac Mini. The Mac has an i5-3210M processor, 8GB of RAM and a 500GB hard disk. Using a Mac mini that is a small form-factor allowed me to position it nicely underneath my router.
 
-![Image of Mac Mini](./images/mac-mini.jpg)
+![Image of Mac Mini](./images/mac-mini.png)
 
 ## Install & Configure Ubuntu Server
 
@@ -184,7 +184,6 @@ proxy-dns-upstream:
 </Callout>
 
 <Preamble>
-
 Once the config was in place, I installed cloudflared as a service:
 </Preamble>
 
@@ -208,7 +207,7 @@ dig @127.0.0.1 -p 5053 google.com
 Installing Pi-Hole was trivial, I just ran the following command and proceeded through the install instructions:
 
 <Callout>
-  It did not matter the default DNS configuration I choose since I override the setting after installation.
+It did not matter the default DNS configuration I choose since I override the setting after installation.
 </Callout>
 
 ```shell
@@ -242,6 +241,8 @@ systemctl status dnsmasq
 ### Configuring devices to use Pi-Hole
 
 To enable all of my devices to utilise Pi-Hole, I chose to set the network DNS servers on my router so, all devices will be routed through Pi-Hole and DoH by default.
+
+![Image of DNS Settings on Router](./images/router-dns.png)
 
 <hr />
 

@@ -35,5 +35,5 @@ export default Callout;
 Callout.propTypes = {
   variant: PropTypes.string,
   excludePrefix: PropTypes.bool,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
