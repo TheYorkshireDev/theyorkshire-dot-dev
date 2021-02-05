@@ -16,5 +16,5 @@ const Preamble = ({ children }) => {
 export default Preamble;
 
 Preamble.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
