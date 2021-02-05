@@ -184,7 +184,6 @@ proxy-dns-upstream:
 </Callout>
 
 <Preamble>
-
 Once the config was in place, I installed cloudflared as a service:
 </Preamble>
 
@@ -208,7 +207,7 @@ dig @127.0.0.1 -p 5053 google.com
 Installing Pi-Hole was trivial, I just ran the following command and proceeded through the install instructions:
 
 <Callout>
-  It did not matter the default DNS configuration I choose since I override the setting after installation.
+It did not matter the default DNS configuration I choose since I override the setting after installation.
 </Callout>
 
 ```shell
