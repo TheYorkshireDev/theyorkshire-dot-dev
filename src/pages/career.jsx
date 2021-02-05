@@ -10,6 +10,7 @@ import TwentySixteen from '../../static/twentysixteen-heading.inline.svg';
 import TwentySeventeen from '../../static/twentyseventeen-heading.inline.svg';
 import TwentyEighteen from '../../static/twentyeighteen-heading.inline.svg';
 import TwentyNineteen from '../../static/twentynineteen-heading.inline.svg';
+import TwentyTwenty from '../../static/twentytwenty-heading.inline.svg';
 import UpperH1 from '../components/UpperH1';
 
 var MarginBottom = `
@@ -45,6 +46,10 @@ const TwentyEighteenHeading = styled(TwentyEighteen)`
 `;
 
 const TwentyNineteenHeading = styled(TwentyNineteen)`
+  ${MarginBottom}
+`;
+
+const TwentyTwentyHeading = styled(TwentyTwenty)`
   ${MarginBottom}
 `;
 
@@ -172,6 +177,47 @@ const CareerPage = () => (
       project to explore the transition of moving our products from on-premise
       infrastructure to the cloud. The project used Terraform to provision cloud
       infrastructure on Azure.
+    </p>
+
+    <TwentyTwentyHeading alt="2020" />
+
+    <p>
+      2020 was a hectic year. I started the year leading a team to architect,
+      plan and execute a move of NPEx to the cloud following on from a
+      successful proof of concept the year before. When the COVID-19 pandemic
+      struck, X-Lab paused the cloud migration to assist the NHS efforts
+      responding to the pandemic.
+    </p>
+
+    <p>
+      NHS England and NHSX mandated the use of NPEx for COVID-19 testing to
+      speed up COVID-19 testing turn around times and assist in COVID reporting
+      to NHS organisations. One of the first things I did during the early
+      stages of the pandemic was to work with NHS Trusts to onboard their
+      laboratories to NPEx building interfaces to consume their nuanced HL7
+      message formats.
+    </p>
+
+    <p>
+      During the summer, I worked with NHS Digital to connect NPEx to their
+      Personal Demographics Service to look up and verify up a patient&apos;s
+      NHS Number and retrieve their GP Practice enriching the result. The
+      enriched patient information allowed for downstream parties to update the
+      patient&apos;s GP records.
+    </p>
+
+    <p>
+      In August, my team and I resumed our cloud migration project with the new
+      objective of getting a platform ready specifically for the NHS&apos;s
+      COVID-19 testing program. We launched the cloud pandemic platform in
+      October on Azure.
+    </p>
+
+    <p>
+      During the latter part of the year, I worked with my team on performance
+      and scaling improvements in conjunction with partnering NHS organisations
+      towards meeting the increased testing capacity outlined by the government
+      and NHS bodies.
     </p>
   </MainContentLayout>
 );

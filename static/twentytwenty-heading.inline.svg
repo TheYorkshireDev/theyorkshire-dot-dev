@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="491px" height="37px" viewBox="0 0 491 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>2020</title>
+    <g id="2020" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g id="Group" fill="#0B536A" font-family="Montserrat-SemiBold, Montserrat" font-size="30" font-weight="500">
+                <text id="2020">
+                    <tspan x="0" y="29">2020</tspan>
+                </text>
+            </g>
+            <line x1="94.5" y1="18.5" x2="487" y2="18.5" id="Path" stroke="#0B536A" stroke-linecap="square"></line>
+        </g>
+    </g>
+</svg>
