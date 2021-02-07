@@ -48,6 +48,7 @@ cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
 ```
 
 <Preamble>
+
 I used SendGrid as a relay host and followed their documentation for [configuring Postfix][2]. Below was the configuration I added to `/etc/postfix/main.cf`.
 </Preamble>
 
@@ -62,6 +63,7 @@ relayhost = [smtp.sendgrid.net]:587
 ```
 
 <Preamble>
+
 To authenticate against Sendgrid using an API key, I created `/etc/postfix/sasl_passwd` to store the API key.
 </Preamble>
 
@@ -214,28 +216,43 @@ It did not matter the default DNS configuration I choose since I override the se
 curl -sSL https://install.pi-hole.net | bash
 ```
 
-After the installation was complete, I updated a couple of configuration files to ensure Pi-Hole was routing our DNS through the cloudflared service.
+After the installation was complete, I updated a couple of configuration files to ensure Pi-Hole was routing DNS through the cloudflared service.
 
-Within `/etc/dnsmasq.d/01-pihole.conf` comment out or remove the server entries and add one of our own.
+<Preamble>
+
+Within `/etc/pihole/setupVars.conf` remove the values for `PIHOLE_DNS_1` and `PIHOLE_DNS_2`. This stops Pi-hole from using the DNS configuration chosen when setting up Pi-hole.
+</Preamble>
+
+```
+...
+PIHOLE_DNS_1=
+PIHOLE_DNS_2=
+...
+```
+
+I also created an additional configuration file for `dnsmasq` to route DNS through the cloudflared service.
 
 <Callout>
 
 The port (after `#`) should match the DoH proxy port configured in cloudflared
 </Callout>
 
+<Preamble>
+
+Create `/etc/dnsmasq.d/cloudflared-dns.conf`:
+</Preamble>
+
 ```
 server=127.0.0.1#5053
 ```
 
-I also need to update `/etc/pihole/setupVars.conf` and comment out the `PIHOLE_DNS` entries, so Pi-Hole used the ones within `dnsmasq`.
-
 <Preamble>
-I then restarted the dnsmasq service to use the updated config.
+I then restarted the pihole-FTL service to use the updated config.
 </Preamble>
 
 ```shell
-systemctl restart dnsmasq.service
-systemctl status dnsmasq
+systemctl restart pihole-FTL
+systemctl status pihole-FTL
 ```
 
 ### Configuring devices to use Pi-Hole
